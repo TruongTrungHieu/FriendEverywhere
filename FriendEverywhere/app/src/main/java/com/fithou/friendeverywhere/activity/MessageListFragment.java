@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 
 import com.fithou.friendeverywhere.R;
 
-/**
- * Created by TRUNGHIEU on 26/2/2016.
- */
 public class MessageListFragment extends Fragment implements View.OnClickListener {
 
     private FloatingActionButton btn_new_message;
