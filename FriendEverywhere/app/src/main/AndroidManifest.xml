@@ -34,6 +34,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.AppIntroActivity" >
+        </activity>
+        <activity android:name=".activity.ConfirmPinCodeActivity" >
+        </activity>
+        <activity android:name=".activity.ProfileActivity" >
+        </activity>
+        <activity android:name=".activity.FriendProfileActivity" >
+        </activity>
+        <activity android:name=".activity.AcceptFriendActivity" >
+        </activity>
+        <activity android:name=".activity.MessageActivity" >
+        </activity>
+        <activity android:name=".activity.NewMessageActivity" >
+        </activity>
+        <activity android:name=".activity.CountryListActivity" >
+        </activity>
+        <activity android:name=".activity.AboutUsActivity" >
+        </activity>
     </application>
 
 </manifest>

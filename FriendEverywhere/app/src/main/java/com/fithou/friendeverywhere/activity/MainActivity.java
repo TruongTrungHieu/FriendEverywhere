@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction = manager.beginTransaction();
         MapFragment mapFragment = new MapFragment();
         transaction.replace(R.id.container, mapFragment);
-        transaction.addToBackStack(null);
+//        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -109,6 +109,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_tab_contacts.setBackgroundColor(getResources().getColor(R.color.footer_actived));
         btn_tab_messages.setBackgroundColor(getResources().getColor(R.color.transparent));
         btn_tab_settings.setBackgroundColor(getResources().getColor(R.color.transparent));
+        
+        transaction = manager.beginTransaction();
+        ContactsFragment contactsFragment = new ContactsFragment();
+        transaction.replace(R.id.container, contactsFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void settingButtonTap() {
@@ -116,5 +122,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_tab_contacts.setBackgroundColor(getResources().getColor(R.color.transparent));
         btn_tab_messages.setBackgroundColor(getResources().getColor(R.color.transparent));
         btn_tab_settings.setBackgroundColor(getResources().getColor(R.color.footer_actived));
+
+        transaction = manager.beginTransaction();
+        SettingsFragment settingsFragment = new SettingsFragment();
+        transaction.replace(R.id.container, settingsFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
