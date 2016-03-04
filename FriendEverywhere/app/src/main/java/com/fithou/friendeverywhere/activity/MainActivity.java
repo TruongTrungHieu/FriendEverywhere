@@ -1,5 +1,6 @@
 package com.fithou.friendeverywhere.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +13,6 @@ import android.widget.ImageButton;
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.object.BaseEnum;
 import com.fithou.friendeverywhere.ultis.TypefaceSpan;
-
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -118,15 +117,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void settingButtonTap() {
-        btn_tab_map.setBackgroundColor(getResources().getColor(R.color.transparent));
-        btn_tab_contacts.setBackgroundColor(getResources().getColor(R.color.transparent));
-        btn_tab_messages.setBackgroundColor(getResources().getColor(R.color.transparent));
-        btn_tab_settings.setBackgroundColor(getResources().getColor(R.color.footer_actived));
+//        btn_tab_map.setBackgroundColor(getResources().getColor(R.color.transparent));
+//        btn_tab_contacts.setBackgroundColor(getResources().getColor(R.color.transparent));
+//        btn_tab_messages.setBackgroundColor(getResources().getColor(R.color.transparent));
+//        btn_tab_settings.setBackgroundColor(getResources().getColor(R.color.footer_actived));
+//
+//        transaction = manager.beginTransaction();
+//        SettingsFragment settingsFragment = new SettingsFragment();
+//        transaction.replace(R.id.container, settingsFragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
 
-        transaction = manager.beginTransaction();
-        SettingsFragment settingsFragment = new SettingsFragment();
-        transaction.replace(R.id.container, settingsFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        Intent t = new Intent(MainActivity.this, AppIntroActivity.class);
+        startActivity(t);
     }
 }
