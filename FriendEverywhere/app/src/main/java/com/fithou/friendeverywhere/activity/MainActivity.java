@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        transaction.addToBackStack(null);
 //        transaction.commit();
 
-        Intent t = new Intent(MainActivity.this, AppIntroActivity.class);
+        Intent t = new Intent(MainActivity.this, CountryListActivity.class);
         startActivity(t);
     }
 }

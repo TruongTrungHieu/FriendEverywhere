@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Friend Everywhere</string>
     <string name="title_activity_test">test</string>
+    <string name="title_accept_friend">Lời mời kết bạn</string>
+    <string name="title_country_list">Chọn quốc gia</string>
 
     <!--AppIntro-->
     <string name="email">EMAIL</string>
@@ -15,4 +17,10 @@
     <string name="skip">SKIP</string>
     <!--End - AppIntro-->
 
+    <!-- ACCEPT FRIEND -->
+    <string name="confirm">Đồng ý</string>
+    <string name="delete">Hủy</string>
+
+    <!--COUNTRY LIST -->
+    <string name="menu_country_list_search">Tìm kiếm</string>
 </resources>
