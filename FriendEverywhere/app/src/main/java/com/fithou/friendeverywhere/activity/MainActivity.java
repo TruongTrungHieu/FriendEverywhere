@@ -117,18 +117,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void settingButtonTap() {
-//        btn_tab_map.setBackgroundColor(getResources().getColor(R.color.transparent));
-//        btn_tab_contacts.setBackgroundColor(getResources().getColor(R.color.transparent));
-//        btn_tab_messages.setBackgroundColor(getResources().getColor(R.color.transparent));
-//        btn_tab_settings.setBackgroundColor(getResources().getColor(R.color.footer_actived));
-//
-//        transaction = manager.beginTransaction();
-//        SettingsFragment settingsFragment = new SettingsFragment();
-//        transaction.replace(R.id.container, settingsFragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
+        btn_tab_map.setBackgroundColor(getResources().getColor(R.color.transparent));
+        btn_tab_contacts.setBackgroundColor(getResources().getColor(R.color.transparent));
+        btn_tab_messages.setBackgroundColor(getResources().getColor(R.color.transparent));
+        btn_tab_settings.setBackgroundColor(getResources().getColor(R.color.footer_actived));
 
-        Intent t = new Intent(MainActivity.this, CountryListActivity.class);
-        startActivity(t);
+        transaction = manager.beginTransaction();
+        SettingsFragment settingsFragment = new SettingsFragment();
+        transaction.replace(R.id.container, settingsFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
+
+
 }
+
