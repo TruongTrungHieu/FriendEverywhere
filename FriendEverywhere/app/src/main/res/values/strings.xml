@@ -4,17 +4,19 @@
     <string name="title_accept_friend">Lời mời kết bạn</string>
     <string name="title_country_list">Chọn quốc gia</string>
 
-
-<!-- activity_register-->
-    <string name="title">SỐ ĐIỆN THOẠI:</string>
+    <!-- REGISTER -->
+    <string name="title">SỐ ĐIỆN THOẠI</string>
     <string name="guima">GỬI MÃ</string>
     <string name="login">ĐĂNG NHẬP</string>
-    
-    <!-- activity_pin_ code-->
+    <string name="register_phone_empty">Số điện thoại không được bỏ trống</string>
+    <string name="register_phone_format">Số điện thoại không hợp lệ</string>
+
+    <!-- PIN CODE-->
     <string name="maxacnhan">MÃ XÁC NHẬN</string>
     <string name="xacnhan">XÁC NHẬN</string>
     <string name="quaylai">QUAY LẠI</string>
-    <!-- activity login-->
+
+    <!-- LOGIN-->
     <string name="sdt">Số điện thoại</string>
     <string name="pass">Mật khẩu</string>
     <string name="laylaitaikhoan">LẤY LẠI TÀI KHOẢN</string>
@@ -39,4 +41,7 @@
 
     <!--COUNTRY LIST -->
     <string name="menu_country_list_search">Tìm kiếm</string>
+
+    <!-- DIALOG -->
+    <string name="dialog_cancel">Đóng</string>
 </resources>

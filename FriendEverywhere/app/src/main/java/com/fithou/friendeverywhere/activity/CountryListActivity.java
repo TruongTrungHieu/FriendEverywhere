@@ -51,7 +51,8 @@ public class CountryListActivity extends AppCompatActivity implements SearchView
             layoutManager = new LinearLayoutManager(this);
             rv_country.setLayoutManager(layoutManager);
 
-            adapter = new CountryAdapter(listCountry, this);
+            boolean isRegister = getIntent().getBooleanExtra("REGISTER", false);
+            adapter = new CountryAdapter(listCountry, this, isRegister);
             rv_country.setAdapter(adapter);
         }
     }

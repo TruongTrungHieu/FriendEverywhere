@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.activity.LoginActivity;
 import com.fithou.friendeverywhere.activity.RegisterActivity;
 import com.fithou.friendeverywhere.object.CountryObject;
 
@@ -20,10 +21,12 @@ public class CountryAdapter extends  RecyclerView.Adapter<CountryAdapter.Recycle
 
     private ArrayList<CountryObject> listData = new ArrayList<>();
     private Context mContext;
+    private boolean isRegister;
 
-    public CountryAdapter(ArrayList<CountryObject> listData, Context c) {
+    public CountryAdapter(ArrayList<CountryObject> listData, Context c, boolean isRegister) {
         this.listData = listData;
         this.mContext = c;
+        this.isRegister = isRegister;
     }
 
     public void setFilter(ArrayList<CountryObject> countryModels) {
@@ -72,10 +75,15 @@ public class CountryAdapter extends  RecyclerView.Adapter<CountryAdapter.Recycle
 
         @Override
         public void onClick(View v) {
-            // TODO
-            Intent register = new Intent(mContext, RegisterActivity.class);
-            register.putExtra("COUNTRY", listData.get(getAdapterPosition()));
-            mContext.startActivity(register);
+            if (isRegister) {
+                Intent register = new Intent(mContext, RegisterActivity.class);
+                register.putExtra("COUNTRY", listData.get(getAdapterPosition()));
+                mContext.startActivity(register);
+            } else {
+                Intent login = new Intent(mContext, LoginActivity.class);
+                login.putExtra("COUNTRY", listData.get(getAdapterPosition()));
+                mContext.startActivity(login);
+            }
         }
     }
 
