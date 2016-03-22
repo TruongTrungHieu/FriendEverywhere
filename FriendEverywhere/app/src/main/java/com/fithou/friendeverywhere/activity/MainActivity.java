@@ -14,8 +14,6 @@ import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.object.BaseEnum;
 import com.fithou.friendeverywhere.ultis.TypefaceSpan;
 
-import java.util.Map;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private BaseEnum.TabIndex tabIndex = BaseEnum.TabIndex.TabIndexMap;

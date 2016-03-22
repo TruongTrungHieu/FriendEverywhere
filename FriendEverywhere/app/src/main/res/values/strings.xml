@@ -2,6 +2,7 @@
     <string name="app_name">Friend Everywhere</string>
     <string name="title_activity_test">test</string>
 
+
 <!-- activity_register-->
     <string name="title">SỐ ĐIỆN THOẠI:</string>
     <string name="guima">GỬI MÃ</string>
@@ -16,4 +17,18 @@
     <string name="pass">Mật khẩu</string>
     <string name="laylaitaikhoan">LẤY LẠI TÀI KHOẢN</string>
     <string name="taikhoanmoi">TÀI KHOẢN MỚI</string>
+
+    <!--AppIntro-->
+    <string name="email">EMAIL</string>
+    <string name="calender">CALENDAR</string>
+    <string name="shopping">SHOPPING</string>
+    <string name="social_network">SOCIAL NETWORK</string>
+
+    <string name="email_hint">A system for sending and receiving messages electronically over a computer network.</string>
+    <string name="calender_hint">Note all your special occasions in calendar and keep them in your finger tips</string>
+    <string name="shopping_hint">Shop and get offers, promo codes and discounts on your future purchase.</string>
+    <string name="social_network_hint">Stay connected with your friends, colleagues and family globally</string>
+    <string name="skip">SKIP</string>
+    <!--End - AppIntro-->
+
 </resources>
