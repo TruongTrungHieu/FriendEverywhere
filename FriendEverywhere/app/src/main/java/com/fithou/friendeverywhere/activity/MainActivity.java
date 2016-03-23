@@ -127,8 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.replace(R.id.container, settingsFragment);
         transaction.addToBackStack(null);
         transaction.commit();
-
-        //Intent t = new Intent(MainActivity.this, SettingsFragment.class);
-        //startActivity(t);
     }
+
 }
+

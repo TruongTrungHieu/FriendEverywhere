@@ -1,6 +1,26 @@
 <resources>
     <string name="app_name">Friend Everywhere</string>
     <string name="title_activity_test">test</string>
+    <string name="title_accept_friend">Lời mời kết bạn</string>
+    <string name="title_country_list">Chọn quốc gia</string>
+
+    <!-- REGISTER -->
+    <string name="title">SỐ ĐIỆN THOẠI</string>
+    <string name="guima">GỬI MÃ</string>
+    <string name="login">ĐĂNG NHẬP</string>
+    <string name="register_phone_empty">Số điện thoại không được bỏ trống</string>
+    <string name="register_phone_format">Số điện thoại không hợp lệ</string>
+
+    <!-- PIN CODE-->
+    <string name="maxacnhan">MÃ XÁC NHẬN</string>
+    <string name="xacnhan">XÁC NHẬN</string>
+    <string name="quaylai">QUAY LẠI</string>
+
+    <!-- LOGIN-->
+    <string name="sdt">Số điện thoại</string>
+    <string name="pass">Mật khẩu</string>
+    <string name="laylaitaikhoan">LẤY LẠI TÀI KHOẢN</string>
+    <string name="taikhoanmoi">TÀI KHOẢN MỚI</string>
 
     <!--AppIntro-->
     <string name="email">EMAIL</string>
@@ -15,4 +35,13 @@
     <string name="skip">SKIP</string>
     <!--End - AppIntro-->
 
+    <!-- ACCEPT FRIEND -->
+    <string name="confirm">Đồng ý</string>
+    <string name="delete">Hủy</string>
+
+    <!--COUNTRY LIST -->
+    <string name="menu_country_list_search">Tìm kiếm</string>
+
+    <!-- DIALOG -->
+    <string name="dialog_cancel">Đóng</string>
 </resources>

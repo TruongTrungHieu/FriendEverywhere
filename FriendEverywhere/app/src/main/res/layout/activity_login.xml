@@ -8,89 +8,119 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.fithou.friendeverywhere.activity.RegisterActivity">
+    tools:context="com.fithou.friendeverywhere.activity.LoginActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayoutRegister"
+        android:layout_above="@+id/linearLayoutLogin"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:singleLine="true"
-        android:text="@string/title"
+        android:text="@string/login"
         android:textColor="@color/white"
-        android:textSize="20dp" />
+        android:textSize="@dimen/abc_action_bar_content_inset_material" />
 
     <LinearLayout
-        android:id="@+id/linearLayoutRegister"
+        android:id="@+id/linearLayoutLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvMaQuocGia_register"
+            android:id="@+id/tvMaQuocGia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/borderstyle2"
-            android:gravity="center"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
+            android:textColor="@color/white" />
 
         <android.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="20dp" />
 
         <EditText
-            android:id="@+id/edtSdt_register"
+            android:id="@+id/edtSdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:autoLink="none"
             android:background="@drawable/borderstyle2"
             android:gravity="center"
+            android:hint="@string/sdt"
             android:inputType="phone"
             android:linksClickable="false"
             android:singleLine="true"
-            android:textSize="16dp"
             android:textColor="@color/white"
             android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white"
             android:textColorLink="@color/white" />
 
         <android.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="20dp" />
+
+        <EditText
+            android:id="@+id/edtPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:autoLink="none"
+            android:background="@drawable/borderstyle2"
+            android:gravity="center"
+            android:hint="@string/pass"
+            android:inputType="phone"
+            android:linksClickable="false"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/white" />
+
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <Button
-            android:id="@+id/btnGuiMa_register"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/border_style"
-            android:text="@string/guima"
+            android:text="@string/login"
             android:textColor="@color/white"
             android:textSize="@dimen/abc_action_bar_content_inset_material" />
 
         <android.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="60dp" />
+            android:layout_height="20dp" />
 
         <TextView
-            android:id="@+id/tvLogin_register"
+            android:id="@+id/tvReturnPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/borderstyle2"
+            android:text="@string/laylaitaikhoan"
             android:gravity="center"
-            android:text="@string/login"
+            android:textColor="@color/white" />
+
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/tvNewAcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/borderstyle2"
+            android:text="@string/taikhoanmoi"
+            android:gravity="center"
             android:textColor="@color/white" />
     </LinearLayout>
 
