@@ -2,6 +2,8 @@ package com.fithou.friendeverywhere.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -67,5 +69,28 @@ public class TermsOfUse extends AppCompatActivity {
         tv_terms = (TextView)findViewById(R.id.tv_terms);
         tv_terms.setText(terms);
 
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+
     }
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+                getMenuInflater().inflate(R.menu.menu_terms_of_use, menu);
+                return true;
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+                int id = item.getItemId();
+                switch (id) {
+                        case android.R.id.home:
+                                onBackPressed();
+                                break;
+
+                        default:
+                                break;
+                }
+                return super.onOptionsItemSelected(item);
+        }
+
 }
