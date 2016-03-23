@@ -30,7 +30,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         btn_suaInfo = (Button) view.findViewById(R.id.btn_UpdateInfo);
         btn_terms = (Button) view.findViewById(R.id.btn_terms);
 
-        img_avatar = (ImageView) view.findViewById(R.id.iv_profileactivity);
+        img_avatar = (ImageView) view.findViewById(R.id.img_avatarSetting);
 
         btn_aboutUs.setOnClickListener(this);
         btn_accSettings.setOnClickListener(this);
@@ -67,7 +67,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 startActivity(account);
                 break;
             case R.id.btn_feedback:
-                Intent feedback = new Intent(this.getActivity(), AboutUsActivity.class);
+                Intent feedback = new Intent(this.getActivity(), FriendProfileActivity.class);
                 startActivity(feedback);
                 break;
             case R.id.btn_terms:

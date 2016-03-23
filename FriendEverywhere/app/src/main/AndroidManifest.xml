@@ -43,7 +43,8 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity.ProfileActivity"
             android:label="@string/updateInfo"></activity>
-        <activity android:name=".activity.FriendProfileActivity"></activity>
+        <activity android:name=".activity.FriendProfileActivity"
+            android:label="@string/title_friend_profile"></activity>
         <activity
             android:name=".activity.AcceptFriendActivity"
             android:label="@string/title_accept_friend"

@@ -25,6 +25,7 @@ public class AboutUsActivity extends AppCompatActivity {
         tv_aboutus = (TextView)findViewById(R.id.tv_aboutus);
         tv_aboutus.setText(R.string.aboutus1);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_about_us, menu);
