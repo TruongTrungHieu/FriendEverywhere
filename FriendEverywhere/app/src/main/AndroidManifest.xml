@@ -45,6 +45,7 @@
         <activity android:name=".activity.NewMessageActivity"></activity>
         <activity android:name=".activity.CountryListActivity"></activity>
         <activity android:name=".activity.AboutUsActivity"></activity>
+        <activity android:name=".activity.TermsOfUse"></activity>
     </application>
 
 </manifest>
