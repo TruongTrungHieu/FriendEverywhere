@@ -1,5 +1,6 @@
 package com.fithou.friendeverywhere.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
     private MessageListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<MessageObject> listMessage;
+    FloatingActionButton floatingActionButton;
 
 
     @Override
@@ -39,6 +41,9 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
 
         btn_new_message = (FloatingActionButton) v.findViewById(R.id.btn_new_message);
         rv_mess_list = (RecyclerView) v.findViewById(R.id.rv_message_list);
+        floatingActionButton = (FloatingActionButton)v.findViewById(R.id.btn_new_message);
+
+        floatingActionButton.setOnClickListener(this);
 
         initData();
         reloadData();
@@ -62,7 +67,15 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-
+        int id = v.getId();
+        switch (id) {
+            default:
+                break;
+            case R.id.btn_new_message:
+                Intent mess_acc = new Intent(this.getActivity(), MessageActivity.class);
+                startActivity(mess_acc);
+                break;
+        }
     }
 
     public void initData() {
