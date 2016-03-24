@@ -13,7 +13,7 @@
     <string name="register_phone_format">Số điện thoại không hợp lệ</string>
 
     <!-- PIN CODE-->
-    <string name="maxacnhan">MÃ XÁC NHẬN</string>
+    <string name="maxacnhan">NHẬP MÃ XÁC NHẬN</string>
     <string name="xacnhan">XÁC NHẬN</string>
     <string name="quaylai">QUAY LẠI</string>
 

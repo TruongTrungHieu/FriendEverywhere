@@ -24,7 +24,7 @@ public class ConfirmPinCodeActivity extends AppCompatActivity implements View.On
     }
 
     private void inflateView() {
-        btn_confirm_code = (Button)findViewById(R.id.btnXacNhan);
+        btn_confirm_code = (Button)findViewById(R.id.btnGuiMa_pin_code);
 
         btn_confirm_code.setOnClickListener(this);
     }
@@ -32,7 +32,7 @@ public class ConfirmPinCodeActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-            case R.id.btnXacNhan:
+            case R.id.btnGuiMa_pin_code:
                 finish();
                 Intent main = new Intent(ConfirmPinCodeActivity.this, MainActivity.class);
                 startActivity(main);
