@@ -71,6 +71,7 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         UserObject userObject = new UserObject();
         messageObject.setContent("dafjaskdjfhasjkdfhajkdshfjkahdfjkahdf");
         userObject.setFullname("Nguyen Tran Dung");
+        messageObject.setSeen(0);
         messageObject.setUserObject(userObject);
         listMessage.add(messageObject);
 
@@ -78,6 +79,7 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         UserObject userObject1 = new UserObject();
         messageObject1.setContent("dafjaskdjfhasjkdfhajkdshfjkahdadsfjhadsjkfhajkfhjkdhfjkadshfjkadshfjkhadsfjkhasdjkfhsajkfhdasjkhdfdasjkhfjkashdfjkashdfkjhmndfmadsfjkfjkahdf");
         userObject1.setFullname("Nguyen Tran Dung");
+        messageObject.setSeen(1);
         messageObject1.setUserObject(userObject1);
         listMessage.add(messageObject1);
         listMessage.add(messageObject1);
@@ -110,6 +112,10 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         listMessage.add(messageObject1);
         listMessage.add(messageObject1);
         listMessage.add(messageObject1);
+
+    }
+
+    public void checkSeen(int seen){
 
     }
 }

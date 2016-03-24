@@ -1,6 +1,7 @@
 package com.fithou.friendeverywhere.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.message_list_item, viewGroup, false);
         return new RecyclerViewHolder(itemView);
+
     }
 
     @Override
@@ -43,6 +45,14 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         MessageObject messageObject = listData.get(position);
         viewHolder.tv_message_list_name.setText(messageObject.getUserObject().getFullname());
         viewHolder.tv_message_list_content.setText(messageObject.getContent());
+        if (messageObject.getSeen()==1) {
+            viewHolder.tv_message_list_name.setTextColor(Color.BLACK);
+            viewHolder.tv_message_list_content.setTextColor(Color.BLACK);
+        }
+        else {
+            viewHolder.tv_message_list_name.setTextColor(Color.parseColor("#FF797979"));
+            viewHolder.tv_message_list_content.setTextColor(Color.parseColor("#FF797979"));
+        }
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements
