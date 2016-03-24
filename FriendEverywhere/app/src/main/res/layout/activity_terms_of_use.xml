@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fithou.friendeverywhere.activity.AboutUsActivity"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Giới thiệu"
+        android:text="Điều khoản sử dụng"
         android:textAllCaps="true"
         android:textSize="20dp"
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"/>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ScrollView
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="380dp"
-            android:layout_margin="20dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_aboutus" />
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_terms" />
 
-        </ScrollView>
-    </LinearLayout>
-
-
-
+    </ScrollView>
 </LinearLayout>

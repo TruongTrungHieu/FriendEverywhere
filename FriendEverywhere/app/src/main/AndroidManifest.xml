@@ -32,19 +32,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RegisterActivity" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.AppIntroActivity"
-            android:theme="@style/AppIntroTheme">
-        </activity>
-        <activity android:name=".activity.ConfirmPinCodeActivity"></activity>
-        <activity android:name=".activity.ProfileActivity"></activity>
+            android:theme="@style/AppIntroTheme"></activity>
+        <activity
+            android:name=".activity.ConfirmPinCodeActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.ProfileActivity"
+            android:label="@string/updateInfo"></activity>
         <activity android:name=".activity.FriendProfileActivity"></activity>
-        <activity android:name=".activity.AcceptFriendActivity"></activity>
+        <activity
+            android:name=".activity.AcceptFriendActivity"
+            android:label="@string/title_accept_friend"
+            android:theme="@style/CustomActionBarTheme"></activity>
         <activity android:name=".activity.MessageActivity"></activity>
         <activity android:name=".activity.NewMessageActivity"></activity>
-        <activity android:name=".activity.CountryListActivity"></activity>
-        <activity android:name=".activity.AboutUsActivity"></activity>
+        <activity
+            android:name=".activity.CountryListActivity"
+            android:label="@string/title_country_list"
+            android:theme="@style/CustomActionBarTheme"></activity>
+        <activity android:name=".activity.AboutUsActivity"
+            android:label="@string/aboutUs"></activity>
+        <activity android:name=".activity.TermsOfUse"
+            android:label="@string/termsOfUse"></activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

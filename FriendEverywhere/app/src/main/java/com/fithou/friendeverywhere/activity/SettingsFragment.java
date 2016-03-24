@@ -2,7 +2,6 @@ package com.fithou.friendeverywhere.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.fithou.friendeverywhere.R;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
-    private Button btn_suaInfo, btn_accSettings, btn_aboutUs, btn_feedback, btn_logout;
+    private Button btn_suaInfo, btn_accSettings, btn_aboutUs, btn_feedback, btn_logout, btn_terms;
     private ImageView img_avatar;
 
     @Override
@@ -23,14 +22,22 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
     }
 
-    protected void inflateView(){
-/*        btn_aboutUs = Button.OnClickListener();
-        btn_accSettings = (Button)findViewById();
-        btn_feedback = (Button)findViewById();
-        btn_logout = (Button)findViewById();
-        btn_suaInfo = (Button)findViewById();
+    protected void inflateView(View view) {
+        btn_aboutUs = (Button) view.findViewById(R.id.btn_aboutUs);
+        btn_accSettings = (Button) view.findViewById(R.id.btn_accountSettings);
+        btn_feedback = (Button) view.findViewById(R.id.btn_feedback);
+        btn_logout = (Button) view.findViewById(R.id.btn_Logout);
+        btn_suaInfo = (Button) view.findViewById(R.id.btn_UpdateInfo);
+        btn_terms = (Button) view.findViewById(R.id.btn_terms);
 
-        img_avatar = (ImageView)findViewById(R.id.iv_profileactivity);*/
+        img_avatar = (ImageView) view.findViewById(R.id.iv_profileactivity);
+
+        btn_aboutUs.setOnClickListener(this);
+        btn_accSettings.setOnClickListener(this);
+        btn_feedback.setOnClickListener(this);
+        btn_suaInfo.setOnClickListener(this);
+        btn_logout.setOnClickListener(this);
+        btn_terms.setOnClickListener(this);
     }
 
     @Override
@@ -38,14 +45,43 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_setting, container, false);
 
+        inflateView(v);
+
         return v;
     }
 
     @Override
     public void onClick(View v) {
-
+        int id = v.getId();
+        switch (id) {
+            case R.id.btn_aboutUs:
+                Intent aboutus = new Intent(this.getActivity(), AboutUsActivity.class);
+                startActivity(aboutus);
+                break;
+            case R.id.btn_UpdateInfo:
+                Intent update = new Intent(this.getActivity(), ProfileActivity.class);
+                startActivity(update);
+                break;
+            case R.id.btn_accountSettings:
+                Intent account = new Intent(this.getActivity(), AboutUsActivity.class);
+                startActivity(account);
+                break;
+            case R.id.btn_feedback:
+                Intent feedback = new Intent(this.getActivity(), AboutUsActivity.class);
+                startActivity(feedback);
+                break;
+            case R.id.btn_terms:
+                Intent terms = new Intent(this.getActivity(), TermsOfUse.class);
+                startActivity(terms);
+                break;
+            case R.id.btn_Logout:
+                this.getActivity().finish();
+                Intent logout = new Intent(this.getActivity(), RegisterActivity.class);
+                startActivity(logout);
+                break;
+            default:
+                break;
+        }
     }
 
-    //Intent t = new Intent(SettingsFragment.this, ProfileActivity.class);
-    //startActivity(t);
 }

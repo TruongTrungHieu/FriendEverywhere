@@ -3,12 +3,8 @@ package com.fithou.friendeverywhere.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.widget.TextView;
 
 import com.fithou.friendeverywhere.R;
-import com.fithou.friendeverywhere.ultis.TypefaceSpan;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -30,6 +26,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private boolean checkFisrtUsing() {
-        return true;
+        return false;
     }
 }

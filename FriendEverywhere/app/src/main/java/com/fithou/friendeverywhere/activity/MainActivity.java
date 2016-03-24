@@ -121,15 +121,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_tab_contacts.setBackgroundColor(getResources().getColor(R.color.transparent));
         btn_tab_messages.setBackgroundColor(getResources().getColor(R.color.transparent));
         btn_tab_settings.setBackgroundColor(getResources().getColor(R.color.footer_actived));
+
         transaction = manager.beginTransaction();
         SettingsFragment settingsFragment = new SettingsFragment();
         transaction.replace(R.id.container, settingsFragment);
         transaction.addToBackStack(null);
         transaction.commit();
-        Intent t= new Intent(MainActivity.this,RegisterActivity.class);
-        startActivity(t);
     }
-
 
 }
 

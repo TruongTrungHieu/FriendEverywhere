@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hùng Vũ"
+                android:text="@string/full_name"
                 android:id="@+id/tv_SettingFullname"
                 android:textAllCaps="true"
                 android:textSize="20dp"
@@ -35,12 +35,13 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:text="Chỉnh sửa thông tin"
+                android:text="@string/updateInfo"
                 android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:background="@color/colorPrimary"
                 android:layout_gravity="bottom"
-                android:id="@+id/btn_UpdateInfo"/>
+                android:id="@+id/btn_UpdateInfo"
+                />
         </LinearLayout>
     </LinearLayout>
 
@@ -50,43 +51,60 @@
         android:gravity="left|center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Thiết lập tài khoản"
+        android:text="@string/accSettings"
         android:layout_marginTop="20dp"
-        android:textSize="20dp"
         android:id="@+id/btn_accountSettings"
+        android:drawableLeft="@drawable/settings"
+        android:drawablePadding="10dp"
+
         />
     <Button
         android:background="@color/transparent"
         android:gravity="left|center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Giới thiệu ứng dụng"
+        android:text="@string/aboutUs"
         android:layout_marginTop="20dp"
-        android:textSize="20dp"
         android:clickable="true"
         android:id="@+id/btn_aboutUs"
+        android:drawableLeft="@drawable/aboutus"
+        android:drawablePadding="10dp"
         />
     <Button
         android:background="@color/transparent"
         android:gravity="left|center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đánh giá - Gợi ý"
+        android:text="@string/termsOfUse"
         android:layout_marginTop="20dp"
-        android:textSize="20dp"
+        android:clickable="true"
+        android:id="@+id/btn_terms"
+        android:drawableLeft="@drawable/terms"
+        android:drawablePadding="10dp"
+        />
+    <Button
+        android:background="@color/transparent"
+        android:gravity="left|center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/feedback"
+        android:layout_marginTop="20dp"
         android:clickable="true"
         android:id="@+id/btn_feedback"
+        android:drawableLeft="@drawable/feedback"
+        android:drawablePadding="10dp"
         />
     <Button
         android:background="@color/transparent"
         android:gravity="left|center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đăng xuất"
+        android:text="@string/logOut"
         android:layout_marginTop="20dp"
-        android:textSize="20dp"
         android:clickable="true"
         android:id="@+id/btn_Logout"
+        android:drawableLeft="@drawable/logout48"
+        android:drawablePadding="10dp"
         />
 
 
