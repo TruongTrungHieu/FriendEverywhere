@@ -29,42 +29,60 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
+
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
         <EditText
-            android:id="@+id/tvPinCode"
+            android:id="@+id/edtSdt_pin_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:autoLink="none"
             android:background="@drawable/borderstyle2"
+            android:gravity="center"
+            android:inputType="text"
+            android:linksClickable="false"
             android:singleLine="true"
-            android:textColor="#ffffff" />
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textStyle="bold"
+            android:textColorLink="@color/white"
+            android:textScaleX="2"/>
 
         <android.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="40dp" />
 
         <Button
-            android:id="@+id/btnXacNhan"
+            android:id="@+id/btnGuiMa_pin_code"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/border_style"
             android:text="@string/xacnhan"
-            android:textColor="#ffffff" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_action_bar_content_inset_material" />
 
         <android.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="60dp" />
 
         <TextView
-            android:id="@+id/tvQuayLai"
+            android:id="@+id/tvLogin_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/borderstyle2"
+            android:gravity="center"
             android:text="@string/quaylai"
-            android:textAlignment="center"
-            android:textColor="#ffffff" />
-
+            android:textColor="@color/white" />
     </LinearLayout>
 </RelativeLayout>
