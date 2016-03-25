@@ -1,6 +1,7 @@
 package com.fithou.friendeverywhere.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fithou.friendeverywhere.R;
-import com.fithou.friendeverywhere.object.CountryObject;
+import com.fithou.friendeverywhere.activity.MessageActivity;
+import com.fithou.friendeverywhere.activity.MessageListFragment;
 import com.fithou.friendeverywhere.object.MessageObject;
 
 import java.util.ArrayList;
@@ -37,7 +39,6 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.message_list_item, viewGroup, false);
         return new RecyclerViewHolder(itemView);
-
     }
 
     @Override
