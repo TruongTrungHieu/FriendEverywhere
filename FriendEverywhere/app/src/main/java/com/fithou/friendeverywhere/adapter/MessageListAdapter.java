@@ -1,5 +1,6 @@
 package com.fithou.friendeverywhere.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,9 +24,12 @@ import java.util.ArrayList;
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.RecyclerViewHolder> {
 
     private ArrayList<MessageObject> listData = new ArrayList<>();
+    private Context mContext;
+    private MessageObject messageObject;
 
     public MessageListAdapter(ArrayList<MessageObject> listData, Context c) {
         this.listData = listData;
+        this.mContext = c;
     }
 
     @Override
@@ -75,7 +79,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
         @Override
         public void onClick(View v) {
-
+            Intent mess_activity = new Intent(mContext, MessageActivity.class);
+            mContext.startActivity(mess_activity);
         }
     }
 }

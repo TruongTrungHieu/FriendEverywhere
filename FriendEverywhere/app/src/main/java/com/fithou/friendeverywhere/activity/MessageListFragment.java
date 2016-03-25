@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.adapter.MessageListAdapter;
@@ -19,19 +20,16 @@ import java.util.ArrayList;
 
 public class MessageListFragment extends Fragment implements View.OnClickListener {
 
-    private FloatingActionButton btn_new_message;
     private RecyclerView rv_mess_list;
     private MessageListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<MessageObject> listMessage;
-    FloatingActionButton floatingActionButton;
-
+    private FloatingActionButton floatingActionButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -39,15 +37,13 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_messagelist, container, false);
 
-        btn_new_message = (FloatingActionButton) v.findViewById(R.id.btn_new_message);
         rv_mess_list = (RecyclerView) v.findViewById(R.id.rv_message_list);
-        floatingActionButton = (FloatingActionButton)v.findViewById(R.id.btn_new_message);
+        floatingActionButton = (FloatingActionButton) v.findViewById(R.id.btn_new_message);
 
         floatingActionButton.setOnClickListener(this);
 
         initData();
         reloadData();
-
 
         return v;
     }
@@ -64,16 +60,15 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         }
     }
 
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            default:
-                break;
             case R.id.btn_new_message:
-                Intent mess_acc = new Intent(this.getActivity(), MessageActivity.class);
-                startActivity(mess_acc);
+                Intent new_mess_activity = new Intent(this.getActivity(), NewMessageActivity.class);
+                startActivity(new_mess_activity);
+                break;
+            default:
                 break;
         }
     }
@@ -95,40 +90,5 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         messageObject.setSeen(1);
         messageObject1.setUserObject(userObject1);
         listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-        listMessage.add(messageObject1);
-
-    }
-
-    public void checkSeen(int seen){
-
     }
 }
