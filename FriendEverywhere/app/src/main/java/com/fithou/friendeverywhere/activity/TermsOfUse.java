@@ -92,5 +92,4 @@ public class TermsOfUse extends AppCompatActivity {
                 }
                 return super.onOptionsItemSelected(item);
         }
-
 }
