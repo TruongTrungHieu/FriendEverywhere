@@ -22,7 +22,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA4PQ-gUYD-ha7QjBXcsbhnHfRTFoEWq5Y" />
 
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -37,32 +37,39 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.AppIntroActivity"
-            android:theme="@style/AppIntroTheme"></activity>
+            android:theme="@style/AppIntroTheme" />
         <activity
             android:name=".activity.ConfirmPinCodeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.ProfileActivity"
-            android:label="@string/updateInfo"></activity>
-        <activity android:name=".activity.FriendProfileActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:label="@string/updateInfo" />
+        <activity android:name=".activity.FriendProfileActivity" />
         <activity
             android:name=".activity.AcceptFriendActivity"
             android:label="@string/title_accept_friend"
-            android:theme="@style/CustomActionBarTheme"></activity>
-        <activity android:name=".activity.MessageActivity"
-            android:label=""></activity>
-        <activity android:name=".activity.NewMessageActivity"
-            android:label="@string/new_mess"></activity>
+            android:theme="@style/CustomActionBarTheme" />
+        <activity
+            android:name=".activity.MessageActivity"
+            android:label="" />
+        <activity
+            android:name=".activity.NewMessageActivity"
+            android:label="@string/new_mess" />
         <activity
             android:name=".activity.CountryListActivity"
             android:label="@string/title_country_list"
-            android:theme="@style/CustomActionBarTheme"></activity>
-        <activity android:name=".activity.AboutUsActivity"
-            android:label="@string/aboutUs"></activity>
-        <activity android:name=".activity.TermsOfUse"
-            android:label="@string/termsOfUse"></activity>
+            android:theme="@style/CustomActionBarTheme" />
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:label="@string/aboutUs" />
+        <activity
+            android:name=".activity.TermsOfUse"
+            android:label="@string/termsOfUse" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.FeedBackActivity"
+            android:label="@string/feedback"></activity>
     </application>
 
 </manifest>

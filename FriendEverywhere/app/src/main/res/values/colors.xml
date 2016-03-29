@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#37474F</color>
     <color name="colorAccent">#607D8B</color>
 
+    <color name="colorDefault">#FF797979</color>
+
     <color name="transparent">#00FFFFFF</color>
     <color name="footer_normal">#424242</color>
     <color name="footer_actived">#212121</color>
