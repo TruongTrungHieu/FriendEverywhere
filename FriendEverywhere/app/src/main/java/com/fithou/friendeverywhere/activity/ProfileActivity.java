@@ -25,8 +25,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
-
     }
 
     protected void inflateView(){
@@ -79,7 +77,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             case android.R.id.home:
                 onBackPressed();
                 break;
-
             default:
                 break;
         }
