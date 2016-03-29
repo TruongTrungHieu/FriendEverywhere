@@ -1,5 +1,6 @@
 package com.fithou.friendeverywhere.object;
 
+import com.fithou.friendeverywhere.ultis.DatetimeSupport;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -13,7 +14,7 @@ public class MessageObject implements Serializable {
 
     private String message_id;
     private String content;
-    private Date created_date;
+    private DatetimeSupport created_date;
     private int error;
     private int seen;
     private int attachment;
@@ -42,9 +43,11 @@ public class MessageObject implements Serializable {
         this.content = content;
     }
 
-    public void setCreated_date(Date created_date) {
+    public void setCreated_date(DatetimeSupport created_date) {
         this.created_date = created_date;
     }
+
+    public DatetimeSupport getCreated_date() { return created_date; }
 
     public int getError() {
         return error;
