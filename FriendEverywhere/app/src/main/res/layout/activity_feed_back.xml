@@ -3,53 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fithou.friendeverywhere.activity.FeedBackActivity"
     android:orientation="vertical"
-    android:layout_margin="10dp">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.fithou.friendeverywhere.activity.FeedBackActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/feed_back_subject"
         android:textAllCaps="true"
-        android:textSize="18dp"
-        android:textColor="@color/footer_actived"/>
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
     <EditText
+        android:id="@+id/et_feedback_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:id="@+id/et_feedback_subject"
-        android:textColor="@color/colorDefault"
-        android:text="@string/feed_back_subject"
-        android:textStyle="italic"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:focusable="true"
+        android:gravity="left|top"
+        android:hint="@string/feed_back_subject"
+        android:inputType="text"
         android:selectAllOnFocus="true"
-        android:focusable="true"/>
+        android:textColor="@color/colorDefault"
+        android:textStyle="italic" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/feed_back_content"
         android:textAllCaps="true"
-        android:textSize="18dp"
-        android:textColor="@color/footer_actived"/>
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
     <EditText
+        android:id="@+id/et_feedback_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:id="@+id/et_feedback_content"
-        android:gravity="top"
-        android:textColor="@color/colorDefault"
-        android:text="@string/feed_back_content"
-        android:textStyle="italic"
+        android:gravity="top|left"
+        android:hint="@string/feed_back_content"
+        android:inputType="textMultiLine"
         android:selectAllOnFocus="true"
-        />
+        android:textColor="@color/colorDefault"
+        android:textStyle="italic" />
+
     <Button
+        android:id="@+id/btn_send_feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gửi"
         android:layout_gravity="center"
-        android:id="@+id/btn_send_feedback"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:text="Gửi" />
 
 </LinearLayout>

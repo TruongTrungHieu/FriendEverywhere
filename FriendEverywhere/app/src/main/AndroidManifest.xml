@@ -41,9 +41,11 @@
         <activity
             android:name=".activity.ConfirmPinCodeActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.ProfileActivity"
+        <activity
+            android:name=".activity.ProfileActivity"
             android:label="@string/updateInfo"></activity>
-        <activity android:name=".activity.FriendProfileActivity"
+        <activity
+            android:name=".activity.FriendProfileActivity"
             android:label="@string/title_friend_profile"></activity>
         <activity
             android:name=".activity.AcceptFriendActivity"
@@ -55,13 +57,19 @@
             android:name=".activity.CountryListActivity"
             android:label="@string/title_country_list"
             android:theme="@style/CustomActionBarTheme"></activity>
-        <activity android:name=".activity.AboutUsActivity"
+        <activity
+            android:name=".activity.AboutUsActivity"
             android:label="@string/aboutUs"></activity>
-        <activity android:name=".activity.TermsOfUse"
+        <activity
+            android:name=".activity.TermsOfUse"
             android:label="@string/termsOfUse"></activity>
         <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.FeedBackActivity"
+            android:label="@string/feedback"
+            android:theme="@style/CustomActionBarTheme"></activity>
     </application>
 
 </manifest>

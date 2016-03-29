@@ -92,16 +92,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             showWarningDialog(getString(R.string.register_phone_empty));
             return false;
         } else {
-            if (countryObject == null) {
-                countryObject = new CountryObject("Vietnam", "+84");
-            }
             String phone = edt_phone.getText().toString();
             if (phone.charAt(0) == '0') {
                 StringBuilder builder = new StringBuilder(phone);
                 builder.deleteCharAt(0);
                 phone = builder.toString();
             }
-            phoneNumber = countryObject.getDial_code() + phone;
+            if (countryObject == null) {
+                phoneNumber = "+84" + phone;
+            } else {
+                phoneNumber = countryObject.getDial_code() + phone;
+            }
             if (StringSupport.checkFormatPhoneNumber(phoneNumber)) {
                 return true;
             } else {
