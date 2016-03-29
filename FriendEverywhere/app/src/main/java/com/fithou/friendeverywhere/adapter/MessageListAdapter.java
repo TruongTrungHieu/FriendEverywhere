@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.activity.MessageActivity;
-import com.fithou.friendeverywhere.activity.MessageListFragment;
 import com.fithou.friendeverywhere.object.MessageObject;
 
 import java.util.ArrayList;
@@ -53,10 +53,12 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         if (messageObject.getSeen()==1) {
             viewHolder.tv_message_list_name.setTextColor(Color.BLACK);
             viewHolder.tv_message_list_content.setTextColor(Color.BLACK);
+            viewHolder.tv_message_list_time.setTextColor(Color.BLACK);
         }
         else {
             viewHolder.tv_message_list_name.setTextColor(Color.parseColor("#FF797979"));
             viewHolder.tv_message_list_content.setTextColor(Color.parseColor("#FF797979"));
+            viewHolder.tv_message_list_time.setTextColor(Color.parseColor("#FF797979"));
         }
     }
 
@@ -64,8 +66,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
             View.OnClickListener {
 
         public View line;
-        public TextView tv_message_list_name;
-        public TextView tv_message_list_content;
+        public TextView tv_message_list_name, tv_message_list_content, tv_message_list_time;
         public ImageView img_message_list_ava;
 
         public RecyclerViewHolder(View itemView) {
@@ -74,6 +75,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
             img_message_list_ava = (ImageView)itemView.findViewById(R.id.iv_mess_list_item);
             tv_message_list_name = (TextView)itemView.findViewById(R.id.tv_name_mess_list_item);
             tv_message_list_content = (TextView)itemView.findViewById(R.id.tv_content_mess_list_item);
+            tv_message_list_time = (TextView)itemView.findViewById(R.id.tv_time_mess_list_item);
             itemView.setOnClickListener(this);
         }
 

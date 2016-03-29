@@ -6,7 +6,7 @@
     android:layout_marginTop="10dp"
 >
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ll_message_list_item"
         >
@@ -24,14 +24,27 @@
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/full_name"
-                android:id="@+id/tv_name_mess_list_item"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/full_name"
+                    android:id="@+id/tv_name_mess_list_item"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="23 giờ trước"
+                    android:id="@+id/tv_time_mess_list_item"
+                    android:textStyle="italic"
+                    android:gravity="right"/>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,6 +54,7 @@
                 android:singleLine="true"
                 android:allowUndo="false" />
         </LinearLayout>
+
     </LinearLayout>
 
     <View
