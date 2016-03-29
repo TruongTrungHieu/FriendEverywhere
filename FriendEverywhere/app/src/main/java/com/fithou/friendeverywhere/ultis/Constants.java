@@ -17,6 +17,7 @@ public class Constants {
     /*
      * Key Friend status
      */
+    public static final int FRIEND_STATUS_NONE = 0;
     public static final int FRIEND_STATUS_REQUESTED = 1;
     public static final int FRIEND_STATUS_ACCEPTED = 2;
 
