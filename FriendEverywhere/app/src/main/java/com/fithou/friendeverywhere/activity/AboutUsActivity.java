@@ -38,7 +38,6 @@ public class AboutUsActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 break;
-
             default:
                 break;
         }
