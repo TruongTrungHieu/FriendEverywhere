@@ -77,4 +77,10 @@
     <!-- TITILE MENU -->
     <string name="menu_edit">Cập nhật</string>
     <string name="menu_done">Lưu</string>
+    <string name="title_activity_find_friend">Tìm bạn</string>
+
+    <!-- FIND FRIEND -->
+    <string name="search">Tìm kiếm</string>
+    <string name="add_friend">Thêm bạn bằng số điện thoại</string>
+    <string name="add_sdt">Nhập số điện thoại</string>
 </resources>

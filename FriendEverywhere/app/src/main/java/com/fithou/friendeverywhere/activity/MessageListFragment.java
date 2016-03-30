@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.adapter.FindFriendAdapter;
 import com.fithou.friendeverywhere.adapter.MessageListAdapter;
 import com.fithou.friendeverywhere.object.MessageObject;
 import com.fithou.friendeverywhere.object.UserObject;
@@ -61,6 +62,7 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
+    /*
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
@@ -72,6 +74,21 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
                 break;
         }
     }
+    */
+
+    // test find_friend
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.btn_new_message:
+                Intent new_mess_activity = new Intent(this.getActivity(), FindFriendActivity.class);
+                startActivity(new_mess_activity);
+                break;
+            default:
+                break;
+        }
+    }
+
 
     public void initData() {
         listMessage = new ArrayList<>();
