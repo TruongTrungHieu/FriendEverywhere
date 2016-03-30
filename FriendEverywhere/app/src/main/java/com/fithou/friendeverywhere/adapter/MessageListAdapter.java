@@ -48,14 +48,13 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     @Override
     public void onBindViewHolder(RecyclerViewHolder viewHolder, int position) {
         MessageObject messageObject = listData.get(position);
-        viewHolder.tv_message_list_name.setText(messageObject.getUserObject().getFullname());
+        viewHolder.tv_message_list_name.setText(messageObject.getGroupObject().getDisplay_name());
         viewHolder.tv_message_list_content.setText(messageObject.getContent());
-        if (messageObject.getSeen()==1) {
+        if (messageObject.getSeen() == 1) {
             viewHolder.tv_message_list_name.setTextColor(Color.BLACK);
             viewHolder.tv_message_list_content.setTextColor(Color.BLACK);
             viewHolder.tv_message_list_time.setTextColor(Color.BLACK);
-        }
-        else {
+        } else {
             viewHolder.tv_message_list_name.setTextColor(Color.parseColor("#FF797979"));
             viewHolder.tv_message_list_content.setTextColor(Color.parseColor("#FF797979"));
             viewHolder.tv_message_list_time.setTextColor(Color.parseColor("#FF797979"));
@@ -71,17 +70,18 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            line = (View)itemView.findViewById(R.id.line_message_list);
-            img_message_list_ava = (ImageView)itemView.findViewById(R.id.iv_mess_list_item);
-            tv_message_list_name = (TextView)itemView.findViewById(R.id.tv_name_mess_list_item);
-            tv_message_list_content = (TextView)itemView.findViewById(R.id.tv_content_mess_list_item);
-            tv_message_list_time = (TextView)itemView.findViewById(R.id.tv_time_mess_list_item);
+            line = (View) itemView.findViewById(R.id.line_message_list);
+            img_message_list_ava = (ImageView) itemView.findViewById(R.id.iv_mess_list_item);
+            tv_message_list_name = (TextView) itemView.findViewById(R.id.tv_name_mess_list_item);
+            tv_message_list_content = (TextView) itemView.findViewById(R.id.tv_content_mess_list_item);
+            tv_message_list_time = (TextView) itemView.findViewById(R.id.tv_time_mess_list_item);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             Intent mess_activity = new Intent(mContext, MessageActivity.class);
+            mess_activity.putExtra("MESSAGE_DETAILS", listData.get(getAdapterPosition()));
             mContext.startActivity(mess_activity);
         }
     }

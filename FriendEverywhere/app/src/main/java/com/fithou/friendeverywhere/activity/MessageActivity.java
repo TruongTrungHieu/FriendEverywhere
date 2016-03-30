@@ -6,8 +6,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.object.CountryObject;
+import com.fithou.friendeverywhere.object.MessageObject;
+import com.fithou.friendeverywhere.ultis.StringSupport;
 
 public class MessageActivity extends AppCompatActivity {
+
+    private MessageObject lastMessageObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +21,24 @@ public class MessageActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        inflateView();
+        initData();
+        reloadView();
+    }
+
+    protected void inflateView() {
+
+    }
+
+    protected void initData() {
+        lastMessageObj = (MessageObject) getIntent().getSerializableExtra("MESSAGE_DETAILS");
+    }
+
+    protected void reloadView() {
+        if (lastMessageObj != null && !StringSupport.isNullOrEmpty(lastMessageObj.getGroupObject().getDisplay_name())) {
+            this.setTitle(lastMessageObj.getGroupObject().getDisplay_name());
+        }
     }
 
     @Override

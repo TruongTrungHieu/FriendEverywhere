@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.adapter.MessageListAdapter;
+import com.fithou.friendeverywhere.object.GroupObject;
 import com.fithou.friendeverywhere.object.MessageObject;
 import com.fithou.friendeverywhere.object.UserObject;
 
@@ -81,6 +82,9 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         userObject.setFullname("Nguyen Tran Dung");
         messageObject.setSeen(0);
         messageObject.setUserObject(userObject);
+        GroupObject groupObject = new GroupObject();
+        groupObject.setDisplay_name("Group 1");
+        messageObject.setGroupObject(groupObject);
         listMessage.add(messageObject);
 
         MessageObject messageObject1 = new MessageObject();
@@ -89,6 +93,9 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         userObject1.setFullname("Nguyen Tran Dung");
         messageObject.setSeen(1);
         messageObject1.setUserObject(userObject1);
+        GroupObject groupObject1 = new GroupObject();
+        groupObject1.setDisplay_name("Group 2");
+        messageObject1.setGroupObject(groupObject1);
         listMessage.add(messageObject1);
     }
 }
