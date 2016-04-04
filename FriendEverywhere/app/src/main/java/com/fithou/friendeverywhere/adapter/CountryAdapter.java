@@ -17,7 +17,7 @@ import com.fithou.friendeverywhere.object.CountryObject;
 
 import java.util.ArrayList;
 
-public class CountryAdapter extends  RecyclerView.Adapter<CountryAdapter.RecyclerViewHolder> {
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.RecyclerViewHolder> {
 
     private ArrayList<CountryObject> listData = new ArrayList<>();
     private Context mContext;

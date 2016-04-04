@@ -1,6 +1,7 @@
 package com.fithou.friendeverywhere.object;
 
 import com.fithou.friendeverywhere.ultis.Constants;
+import com.fithou.friendeverywhere.ultis.StringSupport;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
@@ -143,6 +144,29 @@ public class UserObject implements Serializable {
         Gson gson = new GsonBuilder().create();
         UserObject userObject = gson.fromJson(jsonObject.toString(), UserObject.class);
         return userObject;
+    }
+
+    public String getFirtCharacterName() {
+        if (StringSupport.isNullOrEmpty(fullname)) {
+            return "#";
+        } else {
+            String a[] = fullname.split(" ");
+            String name = a[a.length - 1];
+            return name.substring(0, 1);
+        }
+    }
+
+    public String getSeriousName() {
+        if (StringSupport.isNullOrEmpty(fullname)) {
+            return "#";
+        } else {
+            String a[] = fullname.split(" ");
+            String name = null;
+            for (int i = a.length - 1; i >= 0; --i) {
+                name += a[i] + " ";
+            }
+            return name;
+        }
     }
 
 }
