@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.replace(R.id.container, contactsFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
     }
 
     private void settingButtonTap() {
