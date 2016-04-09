@@ -7,8 +7,8 @@
     <color name="colorDefault">#FF797979</color>
 
     <color name="transparent">#00FFFFFF</color>
-    <color name="footer_normal">#424242</color>
-    <color name="footer_actived">#212121</color>
+    <color name="footer_normal">#37474F</color>
+    <color name="footer_actived">#455A64</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#111111</color>
