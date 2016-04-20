@@ -43,7 +43,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ProfileActivity"
-            android:label="@string/updateInfo" />
+            android:label="@string/updateInfo"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".activity.FriendProfileActivity"
             android:label="@string/title_friend_profile" />

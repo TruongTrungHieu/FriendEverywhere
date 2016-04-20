@@ -3,10 +3,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ava"
+                android:id="@+id/img_map_fragment"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/full_name"
+                android:id="@+id/txt_name_map_fragment"
+                android:layout_toRightOf="@+id/img_map_fragment"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_aboutme_map"
+                android:layout_below="@+id/txt_name_map_fragment"
+                android:layout_toRightOf="@+id/img_map_fragment"
+                android:text="Xin chao minh la sinh vien dai hoc Mo khoa Cong nghe thong tin"
+                android:singleLine="true"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:layout_below="@+id/img_map_fragment">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_call_map"
+                    android:layout_below="@+id/img_map_fragment"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_phone_contact"
+                    />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_sms_map"
+                    android:layout_below="@+id/img_map_fragment"
+                    android:layout_toRightOf="@+id/btn_call_map"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_sms_contact"
+                    />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_chat_map"
+                    android:layout_below="@+id/img_map_fragment"
+                    android:layout_toRightOf="@+id/btn_sms_map"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_chat_contact"
+                    />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_info_map"
+                    android:layout_below="@+id/img_map_fragment"
+                    android:layout_toRightOf="@+id/btn_chat_map"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_info_contact"
+                    />
+            </LinearLayout>
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/exit_map_fragment"
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
+    </FrameLayout>
 </RelativeLayout>

@@ -38,7 +38,7 @@
             android:enabled="false"
             android:gravity="center"
             android:inputType="text"
-            android:text="Hùng Vũ"
+            android:text="@string/full_name"
             android:textAllCaps="true"
             android:textColor="@color/footer_actived"
             android:textSize="20sp" />
