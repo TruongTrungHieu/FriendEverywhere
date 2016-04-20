@@ -82,7 +82,7 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         int id = v.getId();
         switch (id) {
             case R.id.btn_new_message:
-                Intent new_mess_activity = new Intent(this.getActivity(), FindFriendActivity.class);
+                Intent new_mess_activity = new Intent(this.getActivity(), NewMessageActivity.class);
                 startActivity(new_mess_activity);
                 break;
             default:

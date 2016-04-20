@@ -27,6 +27,13 @@ public class MessageObject implements Serializable {
 
     }
 
+    public MessageObject(String content, String fullname) {
+        this.content = content;
+        UserObject userObject = new UserObject();
+        userObject.setFullname(fullname);
+        this.userObject = userObject;
+    }
+
     public String getMessage_id() {
         return message_id;
     }

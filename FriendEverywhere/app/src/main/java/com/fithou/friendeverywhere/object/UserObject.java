@@ -40,6 +40,9 @@ public class UserObject implements Serializable {
     @SerializedName("gcm_id")
     private String gcm_id;
 
+    private String firtCharacterName;
+    private String seriousName;
+
     public UserObject() {
 
     }
