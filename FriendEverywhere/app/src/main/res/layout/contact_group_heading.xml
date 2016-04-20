@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@android:color/transparent"
+    >
+    <ImageView
+        android:id="@+id/img_contact_ava"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ava"/>
+    <TextView
+        android:id="@+id/txt_contact_name"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Vũ Huy Hùng"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"/>
+</LinearLayout>
