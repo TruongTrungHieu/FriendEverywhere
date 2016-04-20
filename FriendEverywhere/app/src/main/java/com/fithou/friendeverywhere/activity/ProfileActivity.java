@@ -1,10 +1,12 @@
 package com.fithou.friendeverywhere.activity;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         inflateView();
         initData();
         reloadView();
+        hideKeyboard();
     }
 
     private void reloadView() {
@@ -106,5 +109,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void hideKeyboard(){
+        View v = this.getCurrentFocus();
+        if (v != null){
+            InputMethodManager inputMethodManager = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }

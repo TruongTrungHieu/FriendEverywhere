@@ -5,14 +5,20 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.object.CountryObject;
+import com.fithou.friendeverywhere.ultis.Constants;
 import com.fithou.friendeverywhere.ultis.StringSupport;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -68,6 +74,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Intent pin_code = new Intent(RegisterActivity.this, ConfirmPinCodeActivity.class);
                     pin_code.putExtra("PHONENUMBER", phoneNumber);
                     startActivity(pin_code);
+
+                    check_phone_server();
                 }
                 break;
             case R.id.tvLogin_register:
@@ -123,6 +131,36 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void check_phone_server() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("phone_number", phoneNumber);
+        client.post(Constants.URL_CHECK_PHONE, params,
+                new AsyncHttpResponseHandler() {
+                    public void onSuccess(String response) {
+                        Log.d("check_phone_number", response);
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Throwable error,
+                                          String content) {
+                        switch (statusCode) {
+                            case 0:
+                                Toast.makeText(
+                                        getBaseContext(), "Kiểm tra lại kết nối mạng!" + statusCode,
+                                        Toast.LENGTH_LONG).show();
+                                break;
+                            default:
+                                Toast.makeText(
+                                        getBaseContext(),"Hệ thống đang bảo trì!"
+                                                + " - " + statusCode,
+                                        Toast.LENGTH_LONG).show();
+                                break;
+                        }
+                    }
+                });
     }
 
 }
