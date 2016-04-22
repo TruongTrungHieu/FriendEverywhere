@@ -1,7 +1,6 @@
 package com.fithou.friendeverywhere.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +34,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
 
         userList = new ArrayList<UserObject>();
         UserObject userObject = new UserObject();
-        userObject.setFullname("Trung Hieu Truong");
+        userObject.setFullname("Vũ Huy Hùng");
         userList.add(userObject);
         userList.add(userObject);
         userList.add(userObject);

@@ -5,20 +5,20 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.asynctask.CheckphoneAsyncTask;
 import com.fithou.friendeverywhere.object.CountryObject;
-import com.fithou.friendeverywhere.ultis.Constants;
+import com.fithou.friendeverywhere.ultis.Callback;
 import com.fithou.friendeverywhere.ultis.StringSupport;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+
+import org.json.JSONObject;
+
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +28,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private TextView tv_login;
     private CountryObject countryObject;
     private String phoneNumber;
+
+    private static final int CHECK_PHONE_NOT_FOUND = 0;
+    private static final int CHECK_PHONE_EXISTING = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +73,37 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btnGuiMa_register:
                 if (checkValidatePhoneNumber()) {
-                    finish();
-                    Intent pin_code = new Intent(RegisterActivity.this, ConfirmPinCodeActivity.class);
-                    pin_code.putExtra("PHONENUMBER", phoneNumber);
-                    startActivity(pin_code);
 
-                    check_phone_server();
+                    new CheckphoneAsyncTask(this).setCallback(new Callback() {
+                        @Override
+                        public void onPreExecute() {
+
+                        }
+
+                        @Override
+                        public void onPostExecute(Object o) {
+                            final JSONObject data = (JSONObject) o;
+                            if (o != null) {
+                                try {
+                                    int check = data.getInt("check_phone");
+                                    if (check == CHECK_PHONE_EXISTING) {
+                                        finish();
+                                        Intent pin_code = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        startActivity(pin_code);
+                                    } else {
+                                        finish();
+                                        Intent pin_code = new Intent(RegisterActivity.this, ConfirmPinCodeActivity.class);
+                                        pin_code.putExtra("PHONENUMBER", phoneNumber);
+                                        startActivity(pin_code);
+                                    }
+                                } catch (Exception e) {
+                                    e.getMessage();
+                                    return;
+                                }
+                            }
+                        }
+                    }).execute(phoneNumber);
+
                 }
                 break;
             case R.id.tvLogin_register:
@@ -131,36 +159,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 });
         AlertDialog alert = builder.create();
         alert.show();
-    }
-
-    private void check_phone_server() {
-        AsyncHttpClient client = new AsyncHttpClient();
-        RequestParams params = new RequestParams();
-        params.put("phone_number", phoneNumber);
-        client.post(Constants.URL_CHECK_PHONE, params,
-                new AsyncHttpResponseHandler() {
-                    public void onSuccess(String response) {
-                        Log.d("check_phone_number", response);
-                    }
-
-                    @Override
-                    public void onFailure(int statusCode, Throwable error,
-                                          String content) {
-                        switch (statusCode) {
-                            case 0:
-                                Toast.makeText(
-                                        getBaseContext(), "Kiểm tra lại kết nối mạng!" + statusCode,
-                                        Toast.LENGTH_LONG).show();
-                                break;
-                            default:
-                                Toast.makeText(
-                                        getBaseContext(),"Hệ thống đang bảo trì!"
-                                                + " - " + statusCode,
-                                        Toast.LENGTH_LONG).show();
-                                break;
-                        }
-                    }
-                });
     }
 
 }

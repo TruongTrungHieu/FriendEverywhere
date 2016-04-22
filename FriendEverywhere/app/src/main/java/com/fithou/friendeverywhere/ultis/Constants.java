@@ -1,8 +1,11 @@
 package com.fithou.friendeverywhere.ultis;
 
 public class Constants {
-    public static final String BASE_URL = "http://192.168.2.247:8080/fe/";
-    public static final String URL_CHECK_PHONE = BASE_URL + "check_phone.php";
+    public static final String BASE_URL = "http://192.168.163.1:8080/fe/";
+    public static final String URL_CHECK_PHONE = "check_phone.php";
+
+    public static final String LOG_TAG = "LOG_SYSTEM";
+
     /*
      *  Datetime format
      */

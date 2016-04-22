@@ -94,4 +94,14 @@
     <string name="add_friend">Thêm bạn bằng số điện thoại</string>
     <string name="add_sdt">Nhập số điện thoại</string>
 
+    <!-- INTERNET -->
+    <string name="error_internet_lost">No internet connection</string>
+    <string name="error_unknown_host">Cannot connect to server</string>
+    <string name="error_internet_timeout">Time out! Cannot connect to server</string>
+    <string name="error_network_general">Cannot connect to server right now. Please try later</string>
+    <string name="error_io_exception">An error occurred! Please try again.</string>
+    <string name="json_key_code">code</string>
+    <string name="json_key_message">message</string>
+    <string name="json_key_results">results</string>
+
 </resources>
