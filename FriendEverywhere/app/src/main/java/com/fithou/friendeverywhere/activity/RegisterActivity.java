@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     pin_code.putExtra("PHONENUMBER", phoneNumber);
                     startActivity(pin_code);
 
-                    check_phone_server();
+                    //check_phone_server();
                 }
                 break;
             case R.id.tvLogin_register:

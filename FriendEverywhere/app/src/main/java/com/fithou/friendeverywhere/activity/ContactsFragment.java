@@ -35,20 +35,20 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
 
         userList = new ArrayList<UserObject>();
         UserObject userObject = new UserObject();
-        userObject.setFullname("Trung Hieu Truong");
+        userObject.setFullname("Vu Huy Hung");
         userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
+        UserObject userObject1 = new UserObject();
+        userObject1.setFullname("Hoang Thanh Hoa");
+        userList.add(userObject1);
+        UserObject userObject2 = new UserObject();
+        userObject2.setFullname("Do Xuan Cho");
+        userList.add(userObject2);
+        UserObject userObject3 = new UserObject();
+        userObject3.setFullname("Nhu Thanh Chung");
+        userList.add(userObject3);
+        UserObject userObject4 = new UserObject();
+        userObject4.setFullname("Mai Kim Chi");
+        userList.add(userObject4);
 
         myList = (ExpandableListView)v.findViewById(R.id.expand_list_view_contact);
         myList.setGroupIndicator(null);

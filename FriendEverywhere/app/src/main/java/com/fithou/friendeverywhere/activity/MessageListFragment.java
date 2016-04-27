@@ -95,8 +95,8 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
         listMessage = new ArrayList<>();
         MessageObject messageObject = new MessageObject();
         UserObject userObject = new UserObject();
-        messageObject.setContent("dafjaskdjfhasjkdfhajkdshfjkahdfjkahdf");
-        userObject.setFullname("Nguyen Tran Dung");
+        messageObject.setContent("Han hanh dc lam quen");
+        userObject.setFullname("Vu Huy Hung");
         messageObject.setSeen(0);
         messageObject.setUserObject(userObject);
         GroupObject groupObject = new GroupObject();
@@ -106,7 +106,7 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
 
         MessageObject messageObject1 = new MessageObject();
         UserObject userObject1 = new UserObject();
-        messageObject1.setContent("dafjaskdjfhasjkdfhajkdshfjkahdadsfjhadsjkfhajkfhjkdhfjkadshfjkadshfjkhadsfjkhasdjkfhsajkfhdasjkhdfdasjkhfjkashdfjkashdfkjhmndfmadsfjkfjkahdf");
+        messageObject1.setContent("Xin chao");
         userObject1.setFullname("Nguyen Tran Dung");
         messageObject.setSeen(1);
         messageObject1.setUserObject(userObject1);

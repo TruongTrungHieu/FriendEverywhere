@@ -12,6 +12,7 @@
         android:layout_height="180dp"
         android:background="#FFFFFF"
         android:layout_alignParentBottom="true"
+        android:visibility="invisible"
         >
         <RelativeLayout
             android:layout_width="match_parent"

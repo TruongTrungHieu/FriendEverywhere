@@ -1,6 +1,8 @@
 package com.fithou.friendeverywhere.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Shader;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,10 +12,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.fithou.friendeverywhere.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
-    private Button btn_suaInfo, btn_accSettings, btn_aboutUs, btn_feedback, btn_logout, btn_terms;
+    private Button btn_accSettings, btn_aboutUs, btn_feedback, btn_logout, btn_terms, btn_suaInfo;
     private ImageView img_avatar;
 
     @Override

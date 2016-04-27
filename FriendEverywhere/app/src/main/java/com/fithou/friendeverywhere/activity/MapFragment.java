@@ -53,7 +53,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         marker = ((LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
         TextView numTxt = (TextView) marker.findViewById(R.id.num_txt);
-        numTxt.setText("27");
+        numTxt.setText("93");
 
         return v;
     }

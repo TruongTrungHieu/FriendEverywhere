@@ -12,12 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ava"
-            android:layout_marginRight="20dp"
             android:id="@+id/img_avatarSetting"
+            android:src="@drawable/ava"
+            android:scaleType="fitCenter"
+            app:riv_corner_radius="10dip"
+            app:riv_border_width="1dip"
+            app:riv_border_color="@color/colorPrimary"
+            app:riv_mutate_background="true"
+            app:riv_tile_mode="repeat"
+            android:layout_marginRight="20dp"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,13 +44,14 @@
                 />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:text="@string/updateInfo"
-                android:textColor="@color/white"
                 android:textAllCaps="false"
-                android:background="@color/colorPrimary"
                 android:layout_gravity="bottom"
+                android:layout_height="30dp"
                 android:id="@+id/btn_UpdateInfo"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/grey50"
+                android:background="@color/colorPrimary"
+                android:text="@string/updateInfo"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -59,7 +67,7 @@
         android:id="@+id/btn_accountSettings"
         android:drawableLeft="@drawable/settings"
         android:drawablePadding="10dp"
-
+        android:visibility="gone"
         />
     <Button
         android:background="@color/transparent"

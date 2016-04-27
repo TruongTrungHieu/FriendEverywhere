@@ -27,7 +27,7 @@ public class MessageActivity extends FirebaseLoginBaseActivity {
     private Firebase mFirebaseRef;
     FirebaseListAdapter<MessageObject> mListAdapter;
 
-    private static final String fullname = "User test";
+    private static final String fullname = "Vũ Huy Hùng";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
