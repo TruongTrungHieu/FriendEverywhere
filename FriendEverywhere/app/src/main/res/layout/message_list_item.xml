@@ -10,11 +10,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/ll_message_list_item"
         >
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ava"
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:id="@+id/iv_mess_list_item"
+            android:src="@drawable/ava"
+            android:scaleType="fitCenter"
+            app:riv_corner_radius="10dip"
+            app:riv_border_width="1dip"
+            app:riv_border_color="@color/colorPrimary"
+            app:riv_mutate_background="true"
+            app:riv_tile_mode="repeat"
             android:layout_marginLeft="10dp"
             />
         <LinearLayout
@@ -23,11 +30,13 @@
             android:orientation="vertical"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="20dp"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -52,7 +61,7 @@
                 android:id="@+id/tv_content_mess_list_item"
                 android:textStyle="italic"
                 android:singleLine="true"
-                android:allowUndo="false" />
+                />
         </LinearLayout>
 
     </LinearLayout>

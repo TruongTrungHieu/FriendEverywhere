@@ -6,6 +6,7 @@ package com.fithou.friendeverywhere.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.activity.FriendProfileActivity;
 import com.fithou.friendeverywhere.object.UserObject;
 import com.fithou.friendeverywhere.ultis.contactlist.DetailInfo;
 
@@ -126,6 +128,8 @@ public class ContactAdapter extends BaseExpandableListAdapter implements View.On
                 break;
             case R.id.imgbtn_contact_info:
                 Toast.makeText(context, "Thông tin", Toast.LENGTH_LONG).show();
+                Intent info = new Intent (context, FriendProfileActivity.class);
+                context.startActivity(info);
                 break;
             default:
                 break;

@@ -16,7 +16,7 @@ import com.fithou.friendeverywhere.object.UserObject;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText et_aboutme, et_birthday, et_fullname, et_email;
+    private EditText et_aboutme, et_birthday, et_fullname, et_email, et_pass, et_confirm;
     private ImageView img_avatar;
     private ImageView img_capture;
     private Menu currentMenu;
@@ -52,6 +52,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         et_birthday = (EditText) findViewById(R.id.et_profileNgaysinh);
         et_fullname = (EditText) findViewById(R.id.et_profileTen);
         et_email = (EditText) findViewById(R.id.et_profileEmail);
+        et_pass = (EditText) findViewById(R.id.et_password_change);
+        et_confirm =(EditText) findViewById(R.id.et_password_confirm);
+
         img_avatar = (ImageView) findViewById(R.id.iv_profileactivity);
         img_capture = (ImageView) findViewById(R.id.img_capture_profile);
 
@@ -73,6 +76,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         et_birthday.setEnabled(editing);
         et_email.setEnabled(editing);
         et_aboutme.setEnabled(editing);
+        et_pass.setEnabled(editing);
+        et_confirm.setEnabled(editing);
         img_capture.setVisibility(editing ? View.VISIBLE : View.GONE);
         if (currentMenu != null) {
             currentMenu.getItem(0).setVisible(!editing);

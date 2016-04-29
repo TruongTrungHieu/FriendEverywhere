@@ -6,11 +6,20 @@
     android:orientation="horizontal"
     android:background="@android:color/transparent"
     >
-    <ImageView
-        android:id="@+id/img_contact_ava"
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/ava"/>
+        android:id="@+id/img_contact_ava"
+        android:src="@drawable/ava"
+        android:scaleType="fitCenter"
+        app:riv_corner_radius="10dip"
+        app:riv_border_width="1dip"
+        app:riv_border_color="@color/colorPrimary"
+        app:riv_mutate_background="true"
+        app:riv_tile_mode="repeat"
+        android:layout_margin="5dp"
+        />
     <TextView
         android:id="@+id/txt_contact_name"
         android:layout_width="match_parent"
@@ -18,5 +27,6 @@
         android:text="Vũ Huy Hùng"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_margin="5dp"/>
 </LinearLayout>

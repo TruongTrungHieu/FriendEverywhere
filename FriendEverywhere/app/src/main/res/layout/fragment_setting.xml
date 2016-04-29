@@ -48,7 +48,6 @@
                 android:layout_gravity="bottom"
                 android:layout_height="30dp"
                 android:id="@+id/btn_UpdateInfo"
-                android:layout_marginRight="20dp"
                 android:textColor="@color/grey50"
                 android:background="@color/colorPrimary"
                 android:text="@string/updateInfo"
