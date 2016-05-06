@@ -19,17 +19,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckphoneAsyncTask extends AsyncTask<String, Void, JSONObject> {
+/**
+ * Created by admin on 06/05/2016.
+ */
+public class RegisterAsyncTask extends AsyncTask<String, Void, JSONObject> {
 
     private Callback callback;
     private Context context;
 
-    public CheckphoneAsyncTask setCallback(Callback callback) {
+    public RegisterAsyncTask setCallback(Callback callback) {
         this.callback = callback;
         return this;
     }
 
-    public CheckphoneAsyncTask(Context context) {
+    public RegisterAsyncTask(Context context) {
         this.context = context;
     }
 
@@ -46,7 +49,7 @@ public class CheckphoneAsyncTask extends AsyncTask<String, Void, JSONObject> {
         List<NameValuePair> listParams = new ArrayList<>();
         listParams.add(new BasicNameValuePair("phone_number", params[0]));
         try {
-            String result = NetworkSupport.sendRequest(Constants.URL_CHECK_PHONE, listParams, NetworkSupport.RequestMethod.POST, 50000);
+            String result = NetworkSupport.sendRequest(Constants.URL_REGISTER, listParams, NetworkSupport.RequestMethod.POST, 50000);
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject.getInt(context.getString(R.string.json_key_code)) == 1) {
                 final String message = jsonObject.getString(context.getString(R.string.json_key_message));

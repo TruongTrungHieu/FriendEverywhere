@@ -69,7 +69,7 @@
     <string name="aboutus1">Xin chân thành cảm ơn sự hướng dẫn, ủng hộ và chỉ bảo của Tiến sĩ Đỗ Xuân Chợ cùng các thầy cô trong Khoa Công Nghệ Thông Tin đã tận tình giảng dạy, cung cấp các kiến thức cần thiết để tôi có thể vận dụng trong quá trình xây dựng ứng dụng.\n Ứng dụng Friend Everywhere sử dụng công nghệ OTT trên nền tảng hệ điều hành Android là sản phẩm tôi xây dựng và thiết kế dựa trên những kiến thức đã được học trên ghế nhà trường. Ứng dụng này được thực hiện không chỉ với mục đích tốt nghiệp mà em còn muốn sản phẩm này được sử dụng trong thực tế, giúp đỡ mọi người có cơ hội kết bạn và giao tiếp một cách nhanh chóng, tiện lợi.\nSo với các ứng dụng đã có trên thị trường hiện nay, ứng dụng của tôi khác với các ứng dụng khác như sau:\n-\tĐối với Viber, ứng dụng FE cho phép người dùng có thể tìm kiếm và kết bạn ở khu vực xung quanh theo yêu cầu như tuổi, giới tính, sở thích…\n-\tĐối với Zalo, ứng dụng FE cung cấp thêm bản đồ để người dùng có thể biết vị trí của người bạn của mình hiện tại ở đâu.\n"</string>
 
     <!--FRIEND INFO-->
-    <string name="title_friend_profile">Thông tin cá nhân</string>
+    <string name="title_friend_profile">Thông tin</string>
     <string name="title_friend_request">Kết bạn</string>
     <string name="title_friend_call">Gọi</string>
     <string name="title_friend_message">Nhắn tin</string>

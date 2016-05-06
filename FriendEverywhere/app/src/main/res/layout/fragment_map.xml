@@ -7,29 +7,47 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="140dp"
         android:background="#FFFFFF"
         android:layout_alignParentBottom="true"
         android:visibility="invisible"
+        android:id="@+id/rl_view_map_fragment"
+        android:animateLayoutChanges="true"
         >
+        <View
+            android:id="@+id/line_map_view"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/colorPrimary"
+            android:alpha="0.7"
+            />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp">
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/ava"
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/img_map_fragment"
-                />
+                android:src="@drawable/ava"
+                android:scaleType="fitCenter"
+                app:riv_corner_radius="10dip"
+                app:riv_border_width="1dip"
+                app:riv_border_color="@color/colorPrimary"
+                app:riv_mutate_background="true"
+                app:riv_tile_mode="repeat"
+                android:layout_margin="5dp"
+            />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/full_name"
                 android:id="@+id/txt_name_map_fragment"
-                android:layout_toRightOf="@+id/img_map_fragment"/>
+                android:layout_toRightOf="@+id/img_map_fragment"
+                android:layout_marginTop="10dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,46 +63,55 @@
                 android:layout_below="@+id/img_map_fragment">
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/btn_call_map"
                     android:layout_below="@+id/img_map_fragment"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_phone_contact"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/title_friend_call"
+                    android:textColor="@color/grey50"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
                     />
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/btn_sms_map"
                     android:layout_below="@+id/img_map_fragment"
                     android:layout_toRightOf="@+id/btn_call_map"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_sms_contact"
-                    />
+                    android:background="@color/colorPrimary"
+                    android:text="SMS"
+                    android:textColor="@color/grey50"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"                    />
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/btn_chat_map"
                     android:layout_below="@+id/img_map_fragment"
                     android:layout_toRightOf="@+id/btn_sms_map"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_chat_contact"
-                    />
+                    android:background="@color/colorPrimary"
+                    android:text="Chat"
+                    android:textColor="@color/grey50"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"                   />
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/btn_info_map"
                     android:layout_below="@+id/img_map_fragment"
                     android:layout_toRightOf="@+id/btn_chat_map"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_info_contact"
-                    />
+                    android:background="@color/colorPrimary"
+                    android:text="Info"
+                    android:textColor="@color/grey50"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"                    />
             </LinearLayout>
             <Button
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/exit_map_fragment"
+                android:id="@+id/btn_exit_map_fragment"
                 android:layout_alignParentRight="true"
                 />
         </RelativeLayout>
-    </FrameLayout>
+    </RelativeLayout>
 </RelativeLayout>
