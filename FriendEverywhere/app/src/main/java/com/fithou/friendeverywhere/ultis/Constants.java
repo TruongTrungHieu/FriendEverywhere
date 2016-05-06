@@ -36,6 +36,17 @@ public class Constants {
     public static final String XML_DEFAULT = "";
 
     public static final String XML_USER_ID = "user_id";
+    public static final String XML_FULL_NAME = "fullname";
+    public static final String XML_BIRTHDAY = "birthday";
+    public static final String XML_EMAIL = "email";
+    public static final String XML_PHONE = "phone";
+    public static final String XML_LATITUDE = "latitude";
+    public static final String XML_LONGTITUDE = "longtitude";
+    public static final String XML_ONLINE_STATUS = "online_status";
+    public static final String XML_PHOTO = "photo";
+    public static final String XML_ABOUT_ME = "about_me";
+    public static final String XML_GCM_ID = "gcm_id";
+
 
     public static void savePreference(Context mContext, String key, String value) {
         SharedPreferences mSharedPrefences = mContext.getSharedPreferences(

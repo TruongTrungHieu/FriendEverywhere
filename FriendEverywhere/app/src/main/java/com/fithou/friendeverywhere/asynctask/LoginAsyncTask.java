@@ -22,17 +22,16 @@ import java.util.List;
 /**
  * Created by admin on 06/05/2016.
  */
-public class RegisterAsyncTask extends AsyncTask<String, Void, JSONObject> {
-
+public class LoginAsyncTask extends AsyncTask<String, Void, JSONObject> {
     private Callback callback;
     private Context context;
 
-    public RegisterAsyncTask setCallback(Callback callback) {
+    public LoginAsyncTask setCallback(Callback callback) {
         this.callback = callback;
         return this;
     }
 
-    public RegisterAsyncTask(Context context) {
+    public LoginAsyncTask(Context context) {
         this.context = context;
     }
 
@@ -45,11 +44,12 @@ public class RegisterAsyncTask extends AsyncTask<String, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(String... params) {
-        JSONObject registerObj = new JSONObject();
+        JSONObject loginObj = new JSONObject();
         List<NameValuePair> listParams = new ArrayList<>();
         listParams.add(new BasicNameValuePair("phone_number", params[0]));
+        listParams.add(new BasicNameValuePair("password", params[1]));
         try {
-            String result = NetworkSupport.sendRequest(Constants.URL_REGISTER, listParams, NetworkSupport.RequestMethod.POST, 50000);
+            String result = NetworkSupport.sendRequest(Constants.URL_LOGIN, listParams, NetworkSupport.RequestMethod.POST, 50000);
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject.getInt(context.getString(R.string.json_key_code)) == 1) {
                 final String message = jsonObject.getString(context.getString(R.string.json_key_message));
@@ -60,8 +60,8 @@ public class RegisterAsyncTask extends AsyncTask<String, Void, JSONObject> {
                     }
                 });
             } else {
-                registerObj = jsonObject.getJSONObject(context.getString(R.string.json_key_results));
-                return registerObj;
+                loginObj = jsonObject.getJSONObject(context.getString(R.string.json_key_results));
+                return loginObj;
             }
         } catch (IOException e) {
             NetworkSupport.showDialogError((Activity) context, e);
@@ -79,11 +79,10 @@ public class RegisterAsyncTask extends AsyncTask<String, Void, JSONObject> {
     }
 
     @Override
-    protected void onPostExecute(JSONObject aUserObject) {
-        super.onPostExecute(aUserObject);
+    protected void onPostExecute(JSONObject aNhanvienObject) {
+        super.onPostExecute(aNhanvienObject);
         LoadingDialog.getDialog(context).dismiss();
-        if (aUserObject == null) return;
-        if (callback != null) callback.onPostExecute(aUserObject);
+        if (aNhanvienObject == null) return;
+        if (callback != null) callback.onPostExecute(aNhanvienObject);
     }
-
 }
