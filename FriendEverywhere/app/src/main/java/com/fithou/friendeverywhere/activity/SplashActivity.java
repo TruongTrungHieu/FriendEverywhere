@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.ultis.Constants;
+import com.fithou.friendeverywhere.ultis.StringSupport;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -26,6 +28,11 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private boolean checkFisrtUsing() {
-        return false;
+        String user_id = Constants.getPreference(getApplicationContext(), Constants.XML_USER_ID);
+        if (StringSupport.isNullOrEmpty(user_id)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -1,9 +1,12 @@
 package com.fithou.friendeverywhere.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +16,9 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fithou.friendeverywhere.R;
@@ -31,6 +37,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap googleMap;
     private MapView mMapView;
     private View marker, view_btm;
+    private Button btn_exit;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,10 +58,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         UiSettings settings = mMapView.getMap().getUiSettings();
         settings.setMapToolbarEnabled(false);
 
+        view_btm = (RelativeLayout) v.findViewById(R.id.rl_view_map_fragment);
+        btn_exit = (Button) v.findViewById(R.id.btn_exit_map_fragment);
         marker = ((LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
-        TextView numTxt = (TextView) marker.findViewById(R.id.num_txt);
-        numTxt.setText("93");
-
+		btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view_btm.animate().translationY(view_btm.getHeight());
+            }
+        });
         return v;
     }
 
@@ -66,7 +78,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         googleMap.setTrafficEnabled(true);
         googleMap.setIndoorEnabled(true);
         googleMap.setBuildingsEnabled(true);
-
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                view_btm.setVisibility(View.VISIBLE);
+                view_btm.animate().translationY(0);
+                return true;
+            }
+        });
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                view_btm.animate().translationY(view_btm.getHeight());
+            }
+        });
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(21.027019, 105.838165))
                 .title("Title")

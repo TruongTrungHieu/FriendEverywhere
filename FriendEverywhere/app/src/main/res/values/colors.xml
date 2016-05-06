@@ -3,6 +3,7 @@
     <color name="colorPrimary">#546E7A</color>
     <color name="colorPrimaryDark">#37474F</color>
     <color name="colorAccent">#607D8B</color>
+    <color name="grey50">#FFFAFAFA</color>
 
     <color name="colorDefault">#FF797979</color>
 
@@ -12,7 +13,6 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#111111</color>
-    <color name="grey50">#FFFAFAFA</color>
 
     <color name="light_green">#3eb74e</color>
     <color name="light_purple">#8c61b3</color>
