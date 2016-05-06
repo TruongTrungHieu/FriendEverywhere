@@ -149,7 +149,7 @@ public class UserObject implements Serializable {
         return userObject;
     }
 
-    public String getFirtCharacterName() {
+    public String getFirstCharacterName() {
         if (StringSupport.isNullOrEmpty(fullname)) {
             return "#";
         } else {

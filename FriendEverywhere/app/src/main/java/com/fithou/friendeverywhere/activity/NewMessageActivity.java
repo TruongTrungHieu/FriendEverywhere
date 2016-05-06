@@ -19,6 +19,7 @@ import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.adapter.CountryAdapter;
 import com.fithou.friendeverywhere.adapter.NewMessageListAdapter;
 import com.fithou.friendeverywhere.object.UserObject;
+import com.fithou.friendeverywhere.ultis.Commons;
 import com.fithou.friendeverywhere.ultis.StringSupport;
 import com.fithou.friendeverywhere.ultis.newmessage.UserTempObject;
 
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class NewMessageActivity extends AppCompatActivity {
+public class NewMessageActivity extends AppCompatActivity implements Commons.OnRecycleItemClickListener_NewMessage {
 
     private ArrayList<UserTempObject> listUserTemp;
     private ArrayList<UserObject> listUser;
@@ -57,7 +58,6 @@ public class NewMessageActivity extends AppCompatActivity {
         UserObject u1 = new UserObject();
         u1.setFullname("Adele");
         listUser.add(u1);
-
         UserObject u2 = new UserObject();
         u2.setFullname("Đông Nhi");
         listUser.add(u2);
@@ -102,11 +102,11 @@ public class NewMessageActivity extends AppCompatActivity {
             if (StringSupport.isNullOrEmpty(header)) {
                 userTempObject.setIsHeader();
             } else {
-                if (header.compareTo(userObject.getFirtCharacterName()) != 0) {
+                if (header.compareTo(userObject.getFirstCharacterName()) != 0) {
                     userTempObject.setIsHeader();
                 }
             }
-            header = userObject.getFirtCharacterName();
+            header = userObject.getFirstCharacterName();
             listUserTemp.add(userTempObject);
         }
     }
@@ -122,7 +122,7 @@ public class NewMessageActivity extends AppCompatActivity {
             layoutManager = new LinearLayoutManager(this);
             rv_new_message.setLayoutManager(layoutManager);
 
-            adapter = new NewMessageListAdapter(listUserTemp);
+            adapter = new NewMessageListAdapter(listUserTemp, this);
             rv_new_message.setAdapter(adapter);
         }
     }
@@ -156,8 +156,9 @@ public class NewMessageActivity extends AppCompatActivity {
                         display_name_group += ", " + listUserChoose.get(i).getFullname();
                     }
                 }
+                Toast.makeText(this, display_name_group, Toast.LENGTH_LONG).show();
+                showDialogDisplayNameGroup();
             }
-            showDialogDisplayNameGroup();
             // TODO: request create Group
         }
     }
@@ -230,5 +231,16 @@ public class NewMessageActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRecycleItemClicked(View v, int position) {
+        UserTempObject userTempObject = listUserTemp.get(position);
+        if (userTempObject.isSelected()) {
+            userTempObject.removeSelected();
+        } else {
+            userTempObject.setIsSelected();
+        }
+        reloadView();
     }
 }
