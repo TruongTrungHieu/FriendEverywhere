@@ -3,115 +3,123 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <RelativeLayout
+        android:id="@+id/rl_view_map_fragment"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="#FFFFFF"
         android:layout_alignParentBottom="true"
-        android:visibility="invisible"
-        android:id="@+id/rl_view_map_fragment"
         android:animateLayoutChanges="true"
-        >
+        android:background="#FFFFFF"
+        android:visibility="invisible">
+
         <View
             android:id="@+id/line_map_view"
             android:layout_width="match_parent"
             android:layout_height="2px"
-            android:background="@color/colorPrimary"
             android:alpha="0.7"
-            />
+            android:background="@color/colorPrimary" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp">
-            <com.makeramen.roundedimageview.RoundedImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/img_map_fragment"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:id="@+id/img_map_fragment"
-                android:src="@drawable/ava"
-                android:scaleType="fitCenter"
-                app:riv_corner_radius="10dip"
-                app:riv_border_width="1dip"
-                app:riv_border_color="@color/colorPrimary"
-                app:riv_mutate_background="true"
-                app:riv_tile_mode="repeat"
                 android:layout_margin="5dp"
-            />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ava"
+                app:riv_border_color="@color/colorPrimary"
+                app:riv_border_width="1dip"
+                app:riv_corner_radius="10dip"
+                app:riv_mutate_background="true"
+                app:riv_tile_mode="repeat" />
+
             <TextView
+                android:id="@+id/txt_name_map_fragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/full_name"
-                android:id="@+id/txt_name_map_fragment"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/img_map_fragment"
-                android:layout_marginTop="10dp"/>
+                android:text="@string/full_name" />
+
             <TextView
+                android:id="@+id/txt_aboutme_map"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/txt_aboutme_map"
                 android:layout_below="@+id/txt_name_map_fragment"
                 android:layout_toRightOf="@+id/img_map_fragment"
-                android:text="Xin chao minh la sinh vien dai hoc Mo khoa Cong nghe thong tin"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:text="Xin chao minh la sinh vien dai hoc Mo khoa Cong nghe thong tin" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="4"
-                android:layout_below="@+id/img_map_fragment">
+                android:layout_below="@+id/img_map_fragment"
+                android:weightSum="4">
+
                 <Button
-                    android:layout_width="0dp"
                     android:id="@+id/btn_call_map"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
                     android:layout_below="@+id/img_map_fragment"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@color/colorPrimary"
                     android:text="@string/title_friend_call"
-                    android:textColor="@color/grey50"
-                    android:layout_height="30dp"
-                    android:layout_margin="10dp"
-                    />
+                    android:textColor="@color/grey50" />
+
                 <Button
-                    android:layout_width="0dp"
                     android:id="@+id/btn_sms_map"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
                     android:layout_below="@+id/img_map_fragment"
+                    android:layout_margin="10dp"
                     android:layout_toRightOf="@+id/btn_call_map"
                     android:layout_weight="1"
                     android:background="@color/colorPrimary"
                     android:text="SMS"
-                    android:textColor="@color/grey50"
-                    android:layout_height="30dp"
-                    android:layout_margin="10dp"                    />
+                    android:textColor="@color/grey50" />
+
                 <Button
-                    android:layout_width="0dp"
                     android:id="@+id/btn_chat_map"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
                     android:layout_below="@+id/img_map_fragment"
+                    android:layout_margin="10dp"
                     android:layout_toRightOf="@+id/btn_sms_map"
                     android:layout_weight="1"
                     android:background="@color/colorPrimary"
                     android:text="Chat"
-                    android:textColor="@color/grey50"
-                    android:layout_height="30dp"
-                    android:layout_margin="10dp"                   />
+                    android:textColor="@color/grey50" />
+
                 <Button
-                    android:layout_width="0dp"
                     android:id="@+id/btn_info_map"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
                     android:layout_below="@+id/img_map_fragment"
+                    android:layout_margin="10dp"
                     android:layout_toRightOf="@+id/btn_chat_map"
                     android:layout_weight="1"
                     android:background="@color/colorPrimary"
                     android:text="Info"
-                    android:textColor="@color/grey50"
-                    android:layout_height="30dp"
-                    android:layout_margin="10dp"                    />
+                    android:textColor="@color/grey50" />
             </LinearLayout>
+
             <Button
-                android:layout_width="25dp"
-                android:layout_height="25dp"
                 android:id="@+id/btn_exit_map_fragment"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_alignParentRight="true"
-                />
+                android:background="@drawable/close" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
