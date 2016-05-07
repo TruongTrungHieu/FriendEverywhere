@@ -102,7 +102,7 @@ public class ConfirmPinCodeActivity extends AppCompatActivity implements View.On
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager notificationManager = (NotificationManager) getSystemService(ns);
 
-        int icon = R.drawable.ic_lock_white_24dp;
+        int icon = R.drawable.splash;
         long when = System.currentTimeMillis();
         Context context = getApplicationContext();
         Intent notificationIntent = new Intent(this, ConfirmPinCodeActivity.class);

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.ultis.Constants;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
@@ -79,12 +80,26 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_Logout:
                 this.getActivity().finish();
+                logout_action();
                 Intent logout = new Intent(this.getActivity(), RegisterActivity.class);
                 startActivity(logout);
                 break;
             default:
                 break;
         }
+    }
+
+    private void logout_action() {
+        Constants.savePreference(this.getContext(), Constants.XML_USER_ID, "");
+        Constants.savePreference(this.getContext(), Constants.XML_BIRTHDAY, "");
+        Constants.savePreference(this.getContext(), Constants.XML_EMAIL, "");
+        Constants.savePreference(this.getContext(), Constants.XML_PHONE, "");
+        Constants.savePreference(this.getContext(), Constants.XML_LATITUDE, "");
+        Constants.savePreference(this.getContext(), Constants.XML_LONGTITUDE, "");
+        Constants.savePreference(this.getContext(), Constants.XML_ONLINE_STATUS, "");
+        Constants.savePreference(this.getContext(), Constants.XML_PHOTO, "");
+        Constants.savePreference(this.getContext(), Constants.XML_ABOUT_ME, "");
+        Constants.savePreference(this.getContext(), Constants.XML_GCM_ID, "");
     }
 
 }
