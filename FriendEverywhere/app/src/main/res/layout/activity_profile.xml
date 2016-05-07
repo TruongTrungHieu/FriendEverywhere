@@ -1,157 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.fithou.friendeverywhere.activity.ProfileActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.fithou.friendeverywhere.activity.ProfileActivity">
+        android:layout_height="match_parent">
 
-
-        <ImageView
-            android:id="@+id/iv_profileactivity"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ava" />
-
-        <ImageView
-            android:id="@+id/img_capture_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/description"
-            android:src="@drawable/camera" />
-
-        <EditText
-            android:id="@+id/et_profileTen"
+        <RelativeLayout
+            android:id="@+id/rl_profile_avatar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/transparent"
-            android:enabled="false"
-            android:gravity="center"
-            android:inputType="text"
-            android:text="@string/full_name"
-            android:textAllCaps="true"
-            android:textColor="@color/footer_actived"
-            android:textSize="20sp" />
+            android:layout_margin="20dp">
+
+            <ImageView
+                android:id="@+id/iv_profileactivity"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ava" />
+
+            <ImageView
+                android:id="@+id/img_capture_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_profileactivity"
+                android:layout_toRightOf="@+id/iv_profileactivity"
+                android:contentDescription="@string/description"
+                android:src="@drawable/camera" />
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_profileGioithieu"
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:gravity="center|left"
-                android:text="Giới thiệu" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_profile_avatar"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
             <EditText
-                android:id="@+id/et_profileGioithieu"
+                android:id="@+id/et_profileTen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@color/transparent"
                 android:enabled="false"
-                android:inputType="text|textMultiLine"
-                android:text="Mình là Hùng, mình độc thân, hân hạnh được làm quen"
-                android:textColor="@color/footer_actived"
-                android:textSize="15dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_profileNgaysinh"
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:ems="10"
-                android:gravity="center|left"
-                android:inputType="date"
-                android:text="Ngày sinh" />
-
-            <EditText
-                android:id="@+id/et_profileNgaysinh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:enabled="false"
+                android:gravity="center"
                 android:inputType="text"
-                android:text="13/04/1993"
+                android:textAllCaps="true"
                 android:textColor="@color/footer_actived"
-                android:textSize="15dp" />
-        </LinearLayout>
+                android:textSize="20sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_profileSdt"
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:gravity="center|left"
-                android:inputType="number"
-                android:text="Số điện thoại" />
-
-            <EditText
-                android:id="@+id/et_profileSdt"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:enabled="false"
-                android:inputType="phone"
-                android:text="0123 813 7279"
-                android:textColor="@color/footer_actived"
-                android:textSize="15dp" />
-        </LinearLayout>
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_profileGioithieu"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center|left"
+                    android:text="Giới thiệu" />
 
-            <TextView
-                android:id="@+id/tv_profileEmail"
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:gravity="center|left"
-                android:inputType="textEmailAddress"
-                android:text="Email" />
+                <EditText
+                    android:id="@+id/et_profileGioithieu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:enabled="false"
+                    android:inputType="text|textMultiLine"
+                    android:textColor="@color/footer_actived"
+                    android:textSize="15dp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_profileEmail"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:enabled="false"
-                android:inputType="textEmailAddress"
-                android:text="vuhuyhung1304@gmail.com"
-                android:textColor="@color/footer_actived"
-                android:textSize="15dp" />
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_profileNgaysinh"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:ems="10"
+                    android:gravity="center|left"
+                    android:inputType="date"
+                    android:text="Ngày sinh" />
+
+                <EditText
+                    android:id="@+id/et_profileNgaysinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:textColor="@color/footer_actived"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_profileSdt"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center|left"
+                    android:inputType="number"
+                    android:text="Số điện thoại" />
+
+                <EditText
+                    android:id="@+id/et_profileSdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:enabled="false"
+                    android:inputType="phone"
+                    android:textColor="@color/footer_actived"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_profileEmail"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center|left"
+                    android:inputType="textEmailAddress"
+                    android:text="Email" />
+
+                <EditText
+                    android:id="@+id/et_profileEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:enabled="false"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/footer_actived"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

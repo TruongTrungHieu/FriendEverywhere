@@ -29,7 +29,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/full_name"
             android:textAllCaps="true"
             android:textSize="15dp"
             android:layout_marginTop="10dp"/>

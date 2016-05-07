@@ -38,7 +38,7 @@ public class MessageActivity extends FirebaseLoginBaseActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         Firebase.setAndroidContext(this);
-        mFirebaseRef = new Firebase("https://friendeverywhere.firebaseIO.com");
+        mFirebaseRef = new Firebase("https://friendeverywhere-app.firebaseio.com/");
 
         final EditText textEdit = (EditText) this.findViewById(R.id.text_edit);
         Button sendButton = (Button) this.findViewById(R.id.send_button);

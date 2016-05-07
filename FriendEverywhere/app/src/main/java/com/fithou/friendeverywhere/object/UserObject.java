@@ -20,7 +20,7 @@ public class UserObject implements Serializable {
     @SerializedName("fullname")
     private String fullname;
     @SerializedName("birthday")
-    private long birthday;
+    private String birthday;
     @SerializedName("email")
     private String email;
     @SerializedName("phone")
@@ -63,11 +63,11 @@ public class UserObject implements Serializable {
         this.fullname = fullname;
     }
 
-    public void setBirthday(long birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public long getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.ultis.Constants;
@@ -19,6 +20,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private Button btn_accSettings, btn_aboutUs, btn_feedback, btn_logout, btn_terms, btn_suaInfo;
     private ImageView img_avatar;
+    private TextView tv_fullname;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         btn_logout = (Button) view.findViewById(R.id.btn_Logout);
         btn_suaInfo = (Button) view.findViewById(R.id.btn_UpdateInfo);
         btn_terms = (Button) view.findViewById(R.id.btn_terms);
-
+        tv_fullname = (TextView) view.findViewById(R.id.tv_SettingFullname);
         img_avatar = (ImageView) view.findViewById(R.id.img_avatarSetting);
 
         btn_aboutUs.setOnClickListener(this);
@@ -51,6 +53,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         inflateView(v);
 
+        String fullname = Constants.getPreference(this.getActivity(), Constants.XML_FULL_NAME);
+        tv_fullname.setText(fullname);
+        // TODO: set avatar
+        
         return v;
     }
 

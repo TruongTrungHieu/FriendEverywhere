@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_capture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:gravity="left|center_horizontal"
+        android:padding="20dp"
+        android:text="Chụp ảnh mới" />
+
+    <View
+        android:id="@+id/space_d"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/btn_capture"
+        android:background="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/btn_album"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/space_d"
+        android:background="@color/transparent"
+        android:gravity="left|center_horizontal"
+        android:padding="20dp"
+        android:text="Chọn ảnh từ thư viện" />
+</RelativeLayout>
