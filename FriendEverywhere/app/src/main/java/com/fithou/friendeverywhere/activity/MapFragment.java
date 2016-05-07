@@ -36,7 +36,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
     private MapView mMapView;
-    private View marker, view_btm;
+    private View marker;
+    private RelativeLayout view_btm;
     private Button btn_exit;
 
     @Override

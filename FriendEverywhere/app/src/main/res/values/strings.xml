@@ -18,6 +18,8 @@
     <string name="maxacnhan">NHẬP MÃ XÁC NHẬN</string>
     <string name="xacnhan">XÁC NHẬN</string>
     <string name="quaylai">QUAY LẠI</string>
+    <string name="login_phone_empty">Số điện thoại không được bỏ trống</string>
+    <string name="login_pass_empty">Mật không được bỏ trống</string>
 
     <!-- LOGIN-->
     <string name="sdt">Số điện thoại</string>
