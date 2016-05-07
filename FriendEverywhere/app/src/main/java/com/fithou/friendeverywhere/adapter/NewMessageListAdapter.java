@@ -67,6 +67,8 @@ public class NewMessageListAdapter extends RecyclerView.Adapter<NewMessageListAd
             viewHolder.line_long.setVisibility(View.GONE);
             viewHolder.line_short.setVisibility(View.VISIBLE);
         }
+        viewHolder.ck_choice.setChecked(userTempObject.isSelected());
+
         // TODO: set avatar
         viewHolder.tv_fullname.setText(userObject.getFullname());
     }
@@ -99,7 +101,7 @@ public class NewMessageListAdapter extends RecyclerView.Adapter<NewMessageListAd
             tv_fullname = (TextView) itemView.findViewById(R.id.tv_fullname_newmessage);
             img_avatar = (ImageView) itemView.findViewById(R.id.img_avatar_newmessage);
             ck_choice = (CheckBox) itemView.findViewById(R.id.checkbox_newmessage);
-            rl_item = (RelativeLayout)itemView.findViewById(R.id.rl_new_message_main);
+            rl_item = (RelativeLayout) itemView.findViewById(R.id.rl_new_message_main);
 
             rl_item.setOnClickListener(this);
         }

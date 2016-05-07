@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item_new_message"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/rl_item_new_message">
+    android:layout_height="wrap_content">
 
     <View
         android:id="@+id/line_long_newmessage"
@@ -77,7 +77,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:focusable="false" />
     </RelativeLayout>
 
 </RelativeLayout>

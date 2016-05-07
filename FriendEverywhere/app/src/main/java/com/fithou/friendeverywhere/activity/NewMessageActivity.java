@@ -237,9 +237,9 @@ public class NewMessageActivity extends AppCompatActivity implements Commons.OnR
     public void onRecycleItemClicked(View v, int position) {
         UserTempObject userTempObject = listUserTemp.get(position);
         if (userTempObject.isSelected()) {
-            userTempObject.removeSelected();
+            listUserTemp.get(position).removeSelected();
         } else {
-            userTempObject.setIsSelected();
+            listUserTemp.get(position).setIsSelected();
         }
         reloadView();
     }
