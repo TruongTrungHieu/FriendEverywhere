@@ -104,4 +104,10 @@
     <string name="json_key_message">message</string>
     <string name="json_key_results">results</string>
 
+    <!-- PROFILE -->
+    <string name="about_me">Giới thiệu</string>
+    <string name="birth_day">Ngày sinh</string>
+    <string name="phone_number">Điện thoại</string>
+    <string name="email_profile">Email</string>
+
 </resources>

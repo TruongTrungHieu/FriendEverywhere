@@ -1,138 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.fithou.friendeverywhere.activity.FriendProfileActivity"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/ava"
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/full_name"
-        android:textSize="15dp"
-        android:textAllCaps="true"
-        android:layout_gravity="center"
-        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ll_friend"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:gravity="center"
-        android:layout_margin="10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.fithou.friendeverywhere.activity.FriendProfileActivity">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="@string/title_friend_call"
-            android:id="@+id/btn_friend_call"
-            android:drawableLeft="@drawable/aboutus"
-            android:drawablePadding="10dp"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="@string/title_friend_message"
-            android:id="@+id/btn_friend_message"
-            android:drawableLeft="@drawable/feedback"
-            android:drawablePadding="10dp"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="@string/title_friend_chat"
-            android:id="@+id/btn_friend_chat"
-            android:drawableLeft="@drawable/terms"
-            android:drawablePadding="10dp"
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/img_avatarSetting"
+            android:src="@drawable/ava"
+            android:scaleType="fitCenter"
+            app:riv_corner_radius="10dip"
+            app:riv_border_width="1px"
+            app:riv_border_color="@color/colorPrimary"
+            app:riv_mutate_background="true"
+            app:riv_tile_mode="repeat"
+            android:layout_gravity="center"
             />
 
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ll_not_friend"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:gravity="center"
-        android:layout_margin="10dp">
-        <Button
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:id="@+id/btn_friend_request"
-            android:text="@string/title_friend_request"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/white"
-            />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/full_name"
+            android:textAllCaps="true"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_friend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_friend_call"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:drawableLeft="@drawable/aboutus"
+                android:drawablePadding="10dp"
+                android:text="@string/title_friend_call" />
+
+            <Button
+                android:id="@+id/btn_friend_message"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:drawableLeft="@drawable/feedback"
+                android:drawablePadding="10dp"
+                android:text="@string/title_friend_message" />
+
+            <Button
+                android:id="@+id/btn_friend_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:drawableLeft="@drawable/terms"
+                android:drawablePadding="10dp"
+                android:text="@string/title_friend_chat" />
+
+
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ll_friend_requested"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:gravity="center"
-        android:layout_margin="10dp">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="@string/accept"
-            android:id="@+id/btn_accept_friend_request"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/light_green"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="@string/decline"
-            android:id="@+id/btn_decline_friend_request"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:background="@color/transparent"/>
+        <LinearLayout
+            android:id="@+id/ll_not_friend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_friend_request"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/title_friend_request"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_friend_requested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_accept_friend_request"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/light_green"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="@string/accept" />
+
+            <Button
+                android:id="@+id/btn_decline_friend_request"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:background="@color/transparent"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="@string/decline" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
                 <TextView
+                    android:id="@+id/tv_friend_profileGioithieu"
                     android:layout_width="90dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/tv_friend_profileGioithieu"
-                    android:text="Giới thiệu"
+                    android:layout_marginRight="10dp"
                     android:gravity="center|left"
-                    android:layout_marginRight="10dp"/>
+                    android:text="@string/about_me" />
+
                 <EditText
+                    android:id="@+id/et_friend_profileGioithieu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:enabled="false"
-                    android:textColor="@color/footer_actived"
                     android:background="@color/transparent"
+                    android:enabled="false"
                     android:text="Mình là Hùng, mình độc thân, hân hạnh được làm quen"
-                    android:id="@+id/et_friend_profileGioithieu"/>
+                    android:textColor="@color/footer_actived"
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -140,79 +153,85 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
+
                 <TextView
+                    android:id="@+id/tv_friend_profileNgaysinh"
                     android:layout_width="90dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/tv_friend_profileNgaysinh"
-                    android:inputType="date"
+                    android:layout_marginRight="10dp"
                     android:ems="10"
-                    android:text="Ngày sinh"
                     android:gravity="center|left"
-                    android:layout_marginRight="10dp"/>
+                    android:inputType="date"
+                    android:text="@string/birth_day" />
+
                 <EditText
+                    android:id="@+id/et_friend_profileNgaysinh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/et_friend_profileNgaysinh"
+                    android:background="@color/transparent"
+                    android:enabled="false"
+                    android:inputType="text"
                     android:text="13/04/1993"
                     android:textColor="@color/footer_actived"
-                    android:enabled="false"
-                    android:background="@color/transparent"
-                    android:inputType="text"
-                    android:textSize="15dp"
-                    />
+                    android:textSize="15dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="90dp"
-                    android:layout_height="match_parent"
                     android:id="@+id/tv_friend_profileSdt"
-                    android:inputType="number"
-                    android:text="Số điện thoại"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
                     android:gravity="center|left"
-                    android:layout_marginRight="10dp"/>
+                    android:inputType="number"
+                    android:text="@string/phone_number" />
+
                 <EditText
+                    android:id="@+id/et_friend_profileSdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/et_friend_profileSdt"
-                    android:enabled="false"
-                    android:textColor="@color/footer_actived"
                     android:background="@color/transparent"
+                    android:enabled="false"
+                    android:inputType="phone"
                     android:text="0123 813 7279"
-                    android:textSize="15dp"
-                    android:inputType="phone" />
+                    android:textColor="@color/footer_actived"
+                    android:textSize="15dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
+
                 <TextView
+                    android:id="@+id/tv_friend_profileEmail"
                     android:layout_width="90dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/tv_friend_profileEmail"
-                    android:inputType="textEmailAddress"
-                    android:text="Email"
+                    android:layout_marginRight="10dp"
                     android:gravity="center|left"
-                    android:layout_marginRight="10dp"/>
+                    android:inputType="textEmailAddress"
+                    android:text="@string/email_profile" />
+
                 <EditText
+                    android:id="@+id/et_friend_profileEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="vuhuyhung1304@gmail.com"
-                    android:textSize="15dp"
-                    android:textColor="@color/footer_actived"
-                    android:enabled="false"
                     android:background="@color/transparent"
-                    android:id="@+id/et_friend_profileEmail"/>
+                    android:enabled="false"
+                    android:text="vuhuyhung1304@gmail.com"
+                    android:textColor="@color/footer_actived"
+                    android:textSize="15dp" />
             </LinearLayout>
-
         </LinearLayout>
-    </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></LinearLayout>
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+    </LinearLayout>
+</ScrollView>
