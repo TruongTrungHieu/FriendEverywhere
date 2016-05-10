@@ -130,5 +130,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        // do nothing.
+    }
+
 }
 

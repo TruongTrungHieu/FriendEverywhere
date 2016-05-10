@@ -28,4 +28,14 @@ public class StringSupport {
         return matcher.matches();
     }
 
+    public static String getFirstCharacterName(String fullname) {
+        if (StringSupport.isNullOrEmpty(fullname)) {
+            return "#";
+        } else {
+            String a[] = fullname.split(" ");
+            String name = a[a.length - 1];
+            return name.substring(0, 1);
+        }
+    }
+
 }

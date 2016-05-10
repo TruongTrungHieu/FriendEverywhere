@@ -149,16 +149,6 @@ public class UserObject implements Serializable {
         return userObject;
     }
 
-    public String getFirstCharacterName() {
-        if (StringSupport.isNullOrEmpty(fullname)) {
-            return "#";
-        } else {
-            String a[] = fullname.split(" ");
-            String name = a[a.length - 1];
-            return name.substring(0, 1);
-        }
-    }
-
     public String getSeriousName() {
         if (StringSupport.isNullOrEmpty(fullname)) {
             return "#";

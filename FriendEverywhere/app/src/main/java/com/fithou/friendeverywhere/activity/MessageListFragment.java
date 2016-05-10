@@ -9,10 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.fithou.friendeverywhere.R;
-import com.fithou.friendeverywhere.adapter.FindFriendAdapter;
 import com.fithou.friendeverywhere.adapter.MessageListAdapter;
 import com.fithou.friendeverywhere.object.GroupObject;
 import com.fithou.friendeverywhere.object.MessageObject;
@@ -25,7 +23,7 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
     private RecyclerView rv_mess_list;
     private MessageListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<MessageObject> listMessage;
+    private ArrayList<GroupObject> listGroup;
     private FloatingActionButton floatingActionButton;
 
     @Override
@@ -51,33 +49,18 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
     }
 
     public void reloadData() {
-        if (listMessage != null) {
+        if (listGroup != null) {
             rv_mess_list.setHasFixedSize(true);
 
             layoutManager = new LinearLayoutManager(this.getActivity());
             rv_mess_list.setLayoutManager(layoutManager);
 
-            adapter = new MessageListAdapter(listMessage, this.getActivity());
+            adapter = new MessageListAdapter(listGroup, this.getActivity());
             rv_mess_list.setAdapter(adapter);
         }
     }
 
     @Override
-    /*
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.btn_new_message:
-                Intent new_mess_activity = new Intent(this.getActivity(), NewMessageActivity.class);
-                startActivity(new_mess_activity);
-                break;
-            default:
-                break;
-        }
-    }
-    */
-
-    // test find_friend
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
@@ -92,27 +75,18 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
 
 
     public void initData() {
-        listMessage = new ArrayList<>();
-        MessageObject messageObject = new MessageObject();
-        UserObject userObject = new UserObject();
-        messageObject.setContent("Han hanh dc lam quen");
-        userObject.setFullname("Vu Huy Hung");
-        messageObject.setSeen(0);
-        messageObject.setUserObject(userObject);
+        listGroup = new ArrayList<>();
         GroupObject groupObject = new GroupObject();
-        groupObject.setDisplay_name("Group 1");
-        messageObject.setGroupObject(groupObject);
-        listMessage.add(messageObject);
+        groupObject.setGroup_id("G_ID_TEST");
+        groupObject.setDisplay_name("ádasd");
 
-        MessageObject messageObject1 = new MessageObject();
-        UserObject userObject1 = new UserObject();
-        messageObject1.setContent("Xin chao");
-        userObject1.setFullname("Nguyen Tran Dung");
-        messageObject.setSeen(1);
-        messageObject1.setUserObject(userObject1);
+        listGroup.add(groupObject);
+
         GroupObject groupObject1 = new GroupObject();
-        groupObject1.setDisplay_name("Group 2");
-        messageObject1.setGroupObject(groupObject1);
-        listMessage.add(messageObject1);
+        groupObject1.setGroup_id("G_ID_TEST_1");
+        groupObject1.setDisplay_name("group 1");
+
+        listGroup.add(groupObject1);
+
     }
 }

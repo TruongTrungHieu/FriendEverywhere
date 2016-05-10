@@ -56,6 +56,7 @@
     <string name="feedback">Phản hồi</string>
     <string name="logOut">Đăng xuất</string>
     <string name="updateInfo">Chỉnh sửa thông tin</string>
+    <string name="acceptFriend">Lời mời kết bạn</string>
 
     <!--MESSAGE ACTIVITY-->
     <string name="new_mess">Tin nhắn mới</string>

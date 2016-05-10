@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ExpandableListView
+        android:id="@+id/expand_list_view_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/expand_list_view_contact"
-        android:listSelector="@android:color/transparent">
+        android:listSelector="@android:color/transparent"></ExpandableListView>
 
-    </ExpandableListView>
-</RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_find_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/search" />
+
+</android.support.design.widget.CoordinatorLayout>

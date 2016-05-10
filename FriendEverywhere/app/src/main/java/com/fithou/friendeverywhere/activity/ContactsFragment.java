@@ -1,6 +1,8 @@
 package com.fithou.friendeverywhere.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +19,9 @@ import java.util.ArrayList;
 public class ContactsFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<UserObject> userList;
-
     private ContactAdapter contactAdapter;
     private ExpandableListView myList;
+    private FloatingActionButton btn_find_friend;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,13 +77,19 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
             }
         });
         contactAdapter = new ContactAdapter(this.getActivity(), userList);
-
         myList.setAdapter(contactAdapter);
+
+        btn_find_friend = (FloatingActionButton) v.findViewById(R.id.btn_find_friend);
+        btn_find_friend.setOnClickListener(this);
+
         return v;
     }
 
     @Override
     public void onClick(View v) {
-
+        if (v.getId() == R.id.btn_find_friend) {
+            Intent find_friend_activity = new Intent(this.getActivity(), FindFriendActivity.class);
+            startActivity(find_friend_activity);
+        }
     }
 }

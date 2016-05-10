@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.object.UserObject;
 import com.fithou.friendeverywhere.ultis.Commons;
+import com.fithou.friendeverywhere.ultis.StringSupport;
 import com.fithou.friendeverywhere.ultis.newmessage.UserTempObject;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class NewMessageListAdapter extends RecyclerView.Adapter<NewMessageListAd
         UserObject userObject = userTempObject.getUserObject();
         if (userTempObject.isHeader()) {
             viewHolder.fl_header.setVisibility(View.VISIBLE);
-            viewHolder.tv_header.setText(userObject.getFirstCharacterName());
+            viewHolder.tv_header.setText(StringSupport.getFirstCharacterName(userObject.getFullname()));
             viewHolder.line_long.setVisibility(View.VISIBLE);
             viewHolder.line_short.setVisibility(View.GONE);
         } else {

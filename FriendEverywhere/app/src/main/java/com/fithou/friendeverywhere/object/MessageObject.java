@@ -1,37 +1,26 @@
 package com.fithou.friendeverywhere.object;
 
-import com.fithou.friendeverywhere.ultis.DatetimeSupport;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
-import java.util.Date;
 
 public class MessageObject implements Serializable {
 
     private String message_id;
     private String content;
-    private DatetimeSupport created_date;
-    private int error;
-    private int seen;
-    private int attachment;
-    private String attachment_url;
-    private int attachment_type;
-    private UserObject userObject;
-    private GroupObject groupObject;
+
+    private String send_user_id;
+    private String send_avatar;
+    private String send_name;
 
     public MessageObject() {
 
     }
 
-    public MessageObject(String content, String fullname) {
+    public MessageObject( String content, String send_user_id, String send_avatar, String send_name) {
+        this.message_id = (System.currentTimeMillis() / 1000L) + "";
         this.content = content;
-        UserObject userObject = new UserObject();
-        userObject.setFullname(fullname);
-        this.userObject = userObject;
+        this.send_user_id = send_user_id;
+        this.send_avatar = send_avatar;
+        this.send_name = send_name;
     }
 
     public String getMessage_id() {
@@ -50,78 +39,27 @@ public class MessageObject implements Serializable {
         this.content = content;
     }
 
-    public void setCreated_date(DatetimeSupport created_date) {
-        this.created_date = created_date;
+    public String getSend_user_id() {
+        return send_user_id;
     }
 
-    public DatetimeSupport getCreated_date() { return created_date; }
-
-    public int getError() {
-        return error;
+    public void setSend_user_id(String send_user_id) {
+        this.send_user_id = send_user_id;
     }
 
-    public void setError(int error) {
-        this.error = error;
+    public String getSend_avatar() {
+        return send_avatar;
     }
 
-    public int getSeen() {
-        return seen;
+    public void setSend_avatar(String send_avatar) {
+        this.send_avatar = send_avatar;
     }
 
-    public void setSeen(int seen) {
-        this.seen = seen;
+    public String getSend_name() {
+        return send_name;
     }
 
-    public int getAttachment() {
-        return attachment;
+    public void setSend_name(String send_name) {
+        this.send_name = send_name;
     }
-
-    public void setAttachment(int attachment) {
-        this.attachment = attachment;
-    }
-
-    public String getAttachment_url() {
-        return attachment_url;
-    }
-
-    public void setAttachment_url(String attachment_url) {
-        this.attachment_url = attachment_url;
-    }
-
-    public int getAttachment_type() {
-        return attachment_type;
-    }
-
-    public void setAttachment_type(int attachment_type) {
-        this.attachment_type = attachment_type;
-    }
-
-    public UserObject getUserObject() {
-        return userObject;
-    }
-
-    public void setUserObject(UserObject userObject) {
-        this.userObject = userObject;
-    }
-
-    public GroupObject getGroupObject() {
-        return groupObject;
-    }
-
-    public void setGroupObject(GroupObject groupObject) {
-        this.groupObject = groupObject;
-    }
-
-    public static MessageObject parseJsonToObject(JSONObject jsonObject) {
-        Gson gson = new GsonBuilder().create();
-        MessageObject messageObject = gson.fromJson(jsonObject.toString(), MessageObject.class);
-        try {
-            messageObject.setUserObject(UserObject.parseJsonToObject(jsonObject.getJSONObject("user")));
-            messageObject.setGroupObject(GroupObject.parseJsonToObject(jsonObject.getJSONObject("group")));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return messageObject;
-    }
-
 }

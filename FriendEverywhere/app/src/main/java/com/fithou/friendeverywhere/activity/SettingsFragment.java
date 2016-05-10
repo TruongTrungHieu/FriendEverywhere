@@ -1,15 +1,12 @@
 package com.fithou.friendeverywhere.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Shader;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fithou.friendeverywhere.R;
@@ -18,8 +15,8 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
-    private Button btn_accSettings, btn_aboutUs, btn_feedback, btn_logout, btn_terms, btn_suaInfo;
-    private ImageView img_avatar;
+    private Button btn_accSettings, btn_aboutUs, btn_feedback, btn_logout, btn_terms, btn_suaInfo, btn_friend;
+    private RoundedImageView img_avatar;
     private TextView tv_fullname;
 
     @Override
@@ -29,6 +26,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     }
 
     protected void inflateView(View view) {
+        btn_friend = (Button) view.findViewById(R.id.btn_acceptfriend_setting);
         btn_aboutUs = (Button) view.findViewById(R.id.btn_aboutUs);
         btn_accSettings = (Button) view.findViewById(R.id.btn_accountSettings);
         btn_feedback = (Button) view.findViewById(R.id.btn_feedback);
@@ -36,8 +34,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         btn_suaInfo = (Button) view.findViewById(R.id.btn_UpdateInfo);
         btn_terms = (Button) view.findViewById(R.id.btn_terms);
         tv_fullname = (TextView) view.findViewById(R.id.tv_SettingFullname);
-        img_avatar = (ImageView) view.findViewById(R.id.img_avatarSetting);
+        img_avatar = (RoundedImageView) view.findViewById(R.id.img_avatarSetting);
 
+        btn_friend.setOnClickListener(this);
         btn_aboutUs.setOnClickListener(this);
         btn_accSettings.setOnClickListener(this);
         btn_feedback.setOnClickListener(this);
@@ -56,7 +55,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         String fullname = Constants.getPreference(this.getActivity(), Constants.XML_FULL_NAME);
         tv_fullname.setText(fullname);
         // TODO: set avatar
-        
+
         return v;
     }
 
@@ -64,6 +63,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
+            case R.id.btn_acceptfriend_setting:
+                Intent friend = new Intent(this.getActivity(), AcceptFriendActivity.class);
+                startActivity(friend);
+                break;
             case R.id.btn_aboutUs:
                 Intent aboutus = new Intent(this.getActivity(), AboutUsActivity.class);
                 startActivity(aboutus);

@@ -102,11 +102,11 @@ public class NewMessageActivity extends AppCompatActivity implements Commons.OnR
             if (StringSupport.isNullOrEmpty(header)) {
                 userTempObject.setIsHeader();
             } else {
-                if (header.compareTo(userObject.getFirstCharacterName()) != 0) {
+                if (header.compareTo(StringSupport.getFirstCharacterName(userObject.getFullname())) != 0) {
                     userTempObject.setIsHeader();
                 }
             }
-            header = userObject.getFirstCharacterName();
+            header = StringSupport.getFirstCharacterName(userObject.getFullname());
             listUserTemp.add(userTempObject);
         }
     }

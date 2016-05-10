@@ -13,7 +13,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ava"
+            android:src="@drawable/splash"
             android:id="@+id/iv_mess_list_item"
             android:layout_marginLeft="10dp"
             />
@@ -43,13 +43,13 @@
                     android:gravity="right"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_content_mess_list_item"
-                android:textStyle="italic"
-                android:singleLine="true"
-                android:allowUndo="false" />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/tv_content_mess_list_item"-->
+                <!--android:textStyle="italic"-->
+                <!--android:singleLine="true"-->
+                <!--android:allowUndo="false" />-->
         </LinearLayout>
 
     </LinearLayout>
@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_below="@+id/ll_message_list_item"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:background="@color/line"
         android:layout_marginLeft="77dp"
         android:alpha="0.7"></View>
