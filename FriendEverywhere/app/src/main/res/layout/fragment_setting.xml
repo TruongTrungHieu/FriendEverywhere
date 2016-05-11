@@ -74,9 +74,7 @@
             android:drawableLeft="@drawable/settings"
             android:drawablePadding="10dp"
             android:gravity="left|center"
-            android:text="@string/accSettings"
-            android:visibility="gone" />
-
+            android:text="@string/accSettings"/>
         <Button
             android:id="@+id/btn_aboutUs"
             android:layout_width="match_parent"

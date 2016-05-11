@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
@@ -30,6 +31,7 @@ public class ConfirmPinCodeActivity extends AppCompatActivity implements View.On
     private Button btn_confirm_code;
     private String phoneNumber;
     private int code = 0;
+    private TextView tv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,9 @@ public class ConfirmPinCodeActivity extends AppCompatActivity implements View.On
     private void inflateView() {
         btn_confirm_code = (Button)findViewById(R.id.btnGuiMa_pin_code);
         et_pincode = (EditText)findViewById(R.id.edtSdt_pin_code);
+        tv_back=(TextView)findViewById(R.id.tvLogin_register);
         btn_confirm_code.setOnClickListener(this);
+        tv_back.setOnClickListener(this);
     }
 
     public void onClick(View view) {
@@ -92,6 +96,11 @@ public class ConfirmPinCodeActivity extends AppCompatActivity implements View.On
                 } else {
                     Toast.makeText(this, "Chưa nhập mã xác nhận!", Toast.LENGTH_LONG).show();
                 }
+                break;
+            case R.id.tvLogin_register:
+                finish();
+                Intent login = new Intent(ConfirmPinCodeActivity.this, LoginActivity.class);
+                startActivity(login);
                 break;
             default:
                 break;

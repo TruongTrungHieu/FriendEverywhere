@@ -18,6 +18,8 @@ public class Constants {
     public static final String URL_REGISTER = BASE_URL + "register.php";
     public static final String URL_SEND_REQUEST_FRIEND = BASE_URL + "send_request_friend.php";
     public static final String URL_UPDATE_PROFILE = BASE_URL + "update_profile.php";
+    public static final String URL_UPDATE_CURRENT_LOCATION = BASE_URL + "update_current_location.php";
+    public static final String URL_DELETE_ACCOUNT = BASE_URL + "delete_account.php"; //truyen vao userID, gan null vao refer
 
     public static final String LOG_TAG = "LOG_SYSTEM";
 
@@ -46,6 +48,11 @@ public class Constants {
     public static final String XML_PHOTO = "photo";
     public static final String XML_ABOUT_ME = "about_me";
     public static final String XML_GCM_ID = "gcm_id";
+
+    public static final String SHARE_LOCATION = "share_location";
+    public static final String SHARE_LOCATION_ALLOW = "allow";
+    public static final String SHARE_LOCATION_DENIED = "deny";
+
 
 
     public static void savePreference(Context mContext, String key, String value) {
