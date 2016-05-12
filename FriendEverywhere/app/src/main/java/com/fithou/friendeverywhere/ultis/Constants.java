@@ -18,6 +18,7 @@ public class Constants {
     public static final String URL_REGISTER = BASE_URL + "register.php";
     public static final String URL_SEND_REQUEST_FRIEND = BASE_URL + "send_request_friend.php";
     public static final String URL_UPDATE_PROFILE = BASE_URL + "update_profile.php";
+    public static final String URL_FIND_FRIEND = BASE_URL + "find_friend.php";
 
     public static final String LOG_TAG = "LOG_SYSTEM";
 

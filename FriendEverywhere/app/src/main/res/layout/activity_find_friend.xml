@@ -23,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:id="@+id/tv_find_quoc_gia"
-        android:text="+Vietnam (+84)"
         android:paddingLeft="10dp"
         android:textSize="16dp"
         android:layout_below="@+id/tvtv"
@@ -43,7 +42,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/find_std"
+                android:id="@+id/et_find_std"
                 android:hint="@string/add_sdt"
                 android:layout_weight="7.0"
                 android:paddingLeft="15dp"
