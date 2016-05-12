@@ -38,6 +38,8 @@ import com.fithou.friendeverywhere.object.FriendObject;
 import com.fithou.friendeverywhere.object.UserObject;
 import com.fithou.friendeverywhere.ultis.Callback;
 import com.fithou.friendeverywhere.ultis.Constants;
+import com.fithou.friendeverywhere.ultis.LocationService;
+import com.fithou.friendeverywhere.ultis.MyLocation;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,7 +56,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener, LocationListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener,
+        LocationListener {
 
     private GoogleMap googleMap;
     private MapView mMapView;
@@ -68,9 +71,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private LocationManager locationManager;
     private String provider;
     private Location location;
-    private double lat, lng;
-    private final static String TAG = MapFragment.class.getSimpleName();
+    private double lat1, lng1;
     private FriendObject friend_map_obj;
+
+    public static Bitmap createDrawableFromView(Context context, View view) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+
+        return bitmap;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,34 +108,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             location = locationManager.getLastKnownLocation(provider);
         }
+        MyLocation.LocationResult locationResult = new MyLocation.LocationResult() {
+            @Override
+            public void gotLocation(Location location) {
+                lat1 = location.getLatitude();
+                lng1 = location.getLongitude();
+                Log.d("11111111111111111", lat1+"");
 
+            }
+        };
+        MyLocation myLocation = new MyLocation(getActivity());
+        myLocation.getLocation(getActivity(), locationResult);
         if (location != null) {
-            System.out.println("Provider " + provider + " has been selected.");
-            lat = (double) (location.getLatitude());
-            lng = (double) (location.getLongitude());
-            Toast.makeText(getActivity(), lat+"", Toast.LENGTH_LONG).show();
-            new UpdateCurrentLocationAsyncTask(getActivity()).setCallback(new Callback() {
-                @Override
-                public void onPreExecute() {
-
-                }
-
-                @Override
-                public void onPostExecute(Object o) {
-                    final JSONObject data = (JSONObject) o;
-                    if (o != null) {
-                        try {
-                            Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LATITUDE, lat+"");
-                            Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LONGTITUDE, lng+"");
-                        } catch (Exception e) {
-                            Log.d("login service", e.getMessage());
-                        }
-                    }
-                }
-            }).execute(Constants.getPreference(getActivity(),Constants.XML_USER_ID),lat+"", lng+"");
             mMapView.invalidate();
         } else {
-            System.out.println("Location not available");
+
         }
 
         mMapView.getMapAsync(this);
@@ -166,6 +170,34 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         } else {
             googleMap.setMyLocationEnabled(true);
         }
+        googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                new UpdateCurrentLocationAsyncTask(getActivity()).setCallback(new Callback() {
+                    @Override
+                    public void onPreExecute() {
+
+                    }
+
+                    @Override
+                    public void onPostExecute(Object o) {
+                        final JSONObject data = (JSONObject) o;
+                        if (o != null) {
+                            try {
+                                Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LATITUDE, lat1 + "");
+                                Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LONGTITUDE, lng1 + "");
+                            } catch (Exception e) {
+                                Log.d("login service", e.getMessage());
+                            }
+                        }
+                    }
+                }).execute(Constants.getPreference(getActivity(), Constants.XML_USER_ID), lat1 + "", lng1 + "");
+                Toast.makeText(getActivity(), Constants.getPreference(getActivity(), Constants.XML_LATITUDE)
+                        +"---"+Constants.getPreference(getActivity(),Constants.XML_LONGTITUDE), Toast.LENGTH_LONG).show();
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat1, lng1), 13));
+                return false;
+            }
+        });
         googleMap.setTrafficEnabled(true);
         googleMap.setIndoorEnabled(true);
         googleMap.setBuildingsEnabled(true);
@@ -194,7 +226,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                     .snippet(f.getFriend_pk())
                     .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this.getActivity(), marker))));
         }
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(21.027020, 105.838166), 13));
 
     }
 
@@ -214,21 +245,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
-    }
-
-    public static Bitmap createDrawableFromView(Context context, View view) {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
-        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
-        view.buildDrawingCache();
-        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-
-        return bitmap;
     }
 
     public void fakeData() {
@@ -307,7 +323,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 getActivity().startActivity(it);
                 break;
             case R.id.btn_chat_map:
+                getActivity().startService(new Intent(getActivity(),LocationService.class));
+                getActivity().getIntent().getStringExtra("Latitude");
 
+                Toast.makeText(getActivity(), lat1 + "---" + lng1, Toast.LENGTH_LONG).show();
                 break;
             case R.id.btn_info_map:
                 Intent info = new Intent(getActivity(), FriendProfileActivity.class);
@@ -320,7 +339,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     }
 
     @Override
-    public void onLocationChanged(Location location){
+    public void onLocationChanged(Location location) {
 
     }
 }
