@@ -22,17 +22,23 @@ import android.widget.TextView;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.activity.FriendProfileActivity;
-import com.fithou.friendeverywhere.object.UserObject;
-import com.fithou.friendeverywhere.ultis.contactlist.DetailInfo;
+import com.fithou.friendeverywhere.activity.MessageActivity;
+import com.fithou.friendeverywhere.asynctask.CreateGroupAsyncTask;
+import com.fithou.friendeverywhere.object.FriendObject;
+import com.fithou.friendeverywhere.object.GroupObject;
+import com.fithou.friendeverywhere.ultis.Callback;
+import com.fithou.friendeverywhere.ultis.Constants;
+
+import org.json.JSONObject;
 
 public class ContactAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private ArrayList<UserObject> contactList;
+    private ArrayList<FriendObject> listFriend;
 
-    public ContactAdapter(Context context, ArrayList<UserObject> contactList) {
+    public ContactAdapter(Context context, ArrayList<FriendObject> listFriend) {
         this.context = context;
-        this.contactList = contactList;
+        this.listFriend = listFriend;
     }
 
     @Override
@@ -49,7 +55,7 @@ public class ContactAdapter extends BaseExpandableListAdapter {
     public View getChildView(final int groupPosition, int childPosition, boolean isLastChild,
                              View view, ViewGroup parent) {
 
-        final UserObject userObject = contactList.get(groupPosition);
+        final FriendObject friendObject = listFriend.get(groupPosition);
 
         if (view == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,7 +67,7 @@ public class ContactAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + userObject.getPhone()));
+                callIntent.setData(Uri.parse("tel:" + friendObject.getFriend_object().getPhone()));
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -73,7 +79,7 @@ public class ContactAdapter extends BaseExpandableListAdapter {
         imgbtn_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("smsto:" + userObject.getPhone());
+                Uri uri = Uri.parse("smsto:" + friendObject.getFriend_object().getPhone());
                 Intent it = new Intent(Intent.ACTION_SENDTO, uri);
                 context.startActivity(it);
             }
@@ -83,7 +89,28 @@ public class ContactAdapter extends BaseExpandableListAdapter {
         imgbtn_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                new CreateGroupAsyncTask(context).setCallback(new Callback() {
+                    @Override
+                    public void onPreExecute() {
 
+                    }
+
+                    @Override
+                    public void onPostExecute(Object o) {
+                        if (o != null) {
+                            final JSONObject jsonObject = (JSONObject) o;
+                            try {
+                                GroupObject groupObject = GroupObject.parseJsonToObject(jsonObject);
+                                Intent chat = new Intent(context, MessageActivity.class);
+                                chat.putExtra("GROUP", groupObject);
+                                context.startActivity(chat);
+                            } catch (Exception e) {
+                                e.getMessage();
+                                return;
+                            }
+                        }
+                    }
+                }).execute(friendObject.getFriend_object().getFullname(), Constants.getPreference(context, Constants.XML_USER_ID), friendObject.getFriend_object().getUser_id());
             }
         });
 
@@ -92,8 +119,8 @@ public class ContactAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View view) {
                 Intent info = new Intent(context, FriendProfileActivity.class);
+                info.putExtra("FRIEND", friendObject);
                 context.startActivity(info);
-                info.putExtra("FRIEND", userObject);
             }
         });
 
@@ -108,12 +135,12 @@ public class ContactAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getGroup(int groupPosition) {
-        return contactList.get(groupPosition);
+        return listFriend.get(groupPosition);
     }
 
     @Override
     public int getGroupCount() {
-        return contactList.size();
+        return listFriend.size();
     }
 
     @Override
@@ -125,7 +152,7 @@ public class ContactAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isLastChild, View view,
                              ViewGroup parent) {
 
-        UserObject headerInfo = (UserObject) getGroup(groupPosition);
+        FriendObject headerInfo = (FriendObject) getGroup(groupPosition);
         if (view == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inf.inflate(R.layout.contact_group_heading, null);
@@ -134,7 +161,7 @@ public class ContactAdapter extends BaseExpandableListAdapter {
         ImageView img_ava = (ImageView) view.findViewById(R.id.img_contact_ava);
 
         TextView txt_name = (TextView) view.findViewById(R.id.txt_contact_name);
-        txt_name.setText(headerInfo.getFullname());
+        txt_name.setText(headerInfo.getFriend_object().getFullname());
 
         return view;
     }

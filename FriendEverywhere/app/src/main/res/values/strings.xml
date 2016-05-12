@@ -74,7 +74,7 @@
     <!--FRIEND INFO-->
     <string name="title_friend_profile">Thông tin</string>
     <string name="title_friend_request">Kết bạn</string>
-    <string name="title_friend_call">Gọi</string>
+    <string name="title_friend_call">Gọi điện</string>
     <string name="title_friend_message">Nhắn tin</string>
     <string name="title_friend_chat">Trò chuyện</string>
 

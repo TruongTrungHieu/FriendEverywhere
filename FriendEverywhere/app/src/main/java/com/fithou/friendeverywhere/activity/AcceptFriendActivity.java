@@ -9,8 +9,11 @@ import android.view.MenuItem;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.adapter.AcceptFriendAdapter;
+import com.fithou.friendeverywhere.asynctask.GetRequestFriendAsyncTask;
 import com.fithou.friendeverywhere.object.FriendObject;
 import com.fithou.friendeverywhere.object.UserObject;
+import com.fithou.friendeverywhere.ultis.Callback;
+import com.fithou.friendeverywhere.ultis.Constants;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,7 @@ public class AcceptFriendActivity extends AppCompatActivity {
     private AcceptFriendAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<FriendObject> listFriend = null;
+    private String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,26 @@ public class AcceptFriendActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        user_id = Constants.getPreference(this, Constants.XML_USER_ID);
+
         inflateView();
         reloadData();
+
+        new GetRequestFriendAsyncTask(this).setCallback(new Callback<ArrayList<FriendObject>>() {
+            @Override
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void onPostExecute(ArrayList<FriendObject> list) {
+                if (list != null) {
+                    listFriend = new ArrayList<>();
+                    listFriend = list;
+                    reloadData();
+                }
+            }
+        }).execute(user_id);
     }
 
     public void inflateView() {
@@ -38,28 +60,13 @@ public class AcceptFriendActivity extends AppCompatActivity {
     }
 
     public void reloadData() {
-
-        listFriend = new ArrayList<>();
-        FriendObject f1 = new FriendObject();
-        UserObject u = new UserObject();
-        u.setFullname("Khang Minh");
-        f1.setFriend_object(u);
-        listFriend.add(f1);
-        listFriend.add(f1);
-        listFriend.add(f1);
-        listFriend.add(f1);
-        listFriend.add(f1);
-        listFriend.add(f1);
-        listFriend.add(f1);
-        listFriend.add(f1);
-
         if (listFriend != null) {
             rv_accept_friend.setHasFixedSize(true);
 
             layoutManager = new LinearLayoutManager(this);
             rv_accept_friend.setLayoutManager(layoutManager);
 
-            adapter = new AcceptFriendAdapter(listFriend);
+            adapter = new AcceptFriendAdapter(this, listFriend);
             rv_accept_friend.setAdapter(adapter);
         }
     }

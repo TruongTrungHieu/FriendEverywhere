@@ -1,8 +1,10 @@
 package com.fithou.friendeverywhere.adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +13,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.asynctask.ConfirmFriendAsyncTask;
 import com.fithou.friendeverywhere.object.FriendObject;
+import com.fithou.friendeverywhere.ultis.Callback;
+import com.fithou.friendeverywhere.ultis.Constants;
 import com.fithou.friendeverywhere.ultis.FileUtils;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class AcceptFriendAdapter extends RecyclerView.Adapter<AcceptFriendAdapter.RecyclerViewHolder> {
 
+    private Context context;
     private ArrayList<FriendObject> listData = new ArrayList<>();
 
-    public AcceptFriendAdapter(ArrayList<FriendObject> listData) {
+    public AcceptFriendAdapter(Context context, ArrayList<FriendObject> listData) {
+        this.context = context;
         this.listData = listData;
     }
 
@@ -78,6 +87,7 @@ public class AcceptFriendAdapter extends RecyclerView.Adapter<AcceptFriendAdapte
             btn_delete = (Button) itemView.findViewById(R.id.btn_delete);
 
             btn_delete.setOnClickListener(this);
+            btn_confirm.setOnClickListener(this);
             img_avatar.setOnClickListener(this);
         }
 
@@ -88,12 +98,36 @@ public class AcceptFriendAdapter extends RecyclerView.Adapter<AcceptFriendAdapte
                 case R.id.img_avatar:
                     break;
                 case R.id.btn_delete:
-                    removeItem(getAdapterPosition());
+                    confirm_server(true, listData.get(getAdapterPosition()).getFriend_object().getUser_id(), getAdapterPosition());
+                    break;
+                case R.id.btn_confirm:
+                    confirm_server(false, listData.get(getAdapterPosition()).getFriend_object().getUser_id(), getAdapterPosition());
                     break;
                 default:
                     break;
             }
         }
+    }
+
+    private void confirm_server(boolean isDeleted, String friend_id, final int pos) {
+        new ConfirmFriendAsyncTask(context).setCallback(new Callback() {
+            @Override
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void onPostExecute(Object o) {
+                final JSONObject jsonObject = (JSONObject) o;
+                if (jsonObject != null) {
+                    try {
+                        removeItem(pos);
+                    } catch (Exception e) {
+                        Log.e("confirm_server", e.getMessage());
+                    }
+                }
+            }
+        }).execute(Constants.getPreference(context, Constants.XML_USER_ID), friend_id, isDeleted ? "0" : "2");
     }
 
 }

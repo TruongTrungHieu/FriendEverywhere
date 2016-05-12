@@ -13,14 +13,18 @@ public class Constants {
     public static final String URL_CONFIRM_FRIEND = BASE_URL + "confirm_friend.php";
     public static final String URL_CREATE_GROUP = BASE_URL + "create_group.php";
     public static final String URL_GET_LIST_FRIEND = BASE_URL + "get_list_friend.php";
+    public static final String URL_GET_LIST_ADD_FRIEND = BASE_URL + "get_list_add_friend.php";
     public static final String URL_GET_LIST_GROUP = BASE_URL + "get_list_group.php";
     public static final String URL_LOGIN = BASE_URL + "login.php";
     public static final String URL_REGISTER = BASE_URL + "register.php";
     public static final String URL_SEND_REQUEST_FRIEND = BASE_URL + "send_request_friend.php";
     public static final String URL_UPDATE_PROFILE = BASE_URL + "update_profile.php";
     public static final String URL_UPDATE_CURRENT_LOCATION = BASE_URL + "update_current_location.php";
-    public static final String URL_DELETE_ACCOUNT = BASE_URL + "delete_account.php"; //truyen vao userID, gan null vao refer
+    public static final String URL_DELETE_ACCOUNT = BASE_URL + "delete_account.php";
     public static final String URL_CREATE_PASSWORD = BASE_URL + "create_password.php";
+    public static final String URL_FIND_FRIEND = BASE_URL + "find_friend.php";
+    public static final String URL_FEEDBACK = BASE_URL + "feedback.php";
+    public static final String URL_GET_USER_MAP = BASE_URL + "get_user_map.php";
 
     public static final String LOG_TAG = "LOG_SYSTEM";
 
@@ -49,16 +53,12 @@ public class Constants {
     public static final String XML_PHOTO = "photo";
     public static final String XML_ABOUT_ME = "about_me";
     public static final String XML_GCM_ID = "gcm_id";
-<<<<<<< Updated upstream
 
     public static final String SHARE_LOCATION = "share_location";
     public static final String SHARE_LOCATION_ALLOW = "allow";
     public static final String SHARE_LOCATION_DENIED = "deny";
 
-
-=======
     public static final String XML_CREATE_PASSWORD = "create_password";
->>>>>>> Stashed changes
 
     public static void savePreference(Context mContext, String key, String value) {
         SharedPreferences mSharedPrefences = mContext.getSharedPreferences(

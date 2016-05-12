@@ -29,6 +29,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         et_old = (EditText) findViewById(R.id.et_old_password);
         et_new = (EditText) findViewById(R.id.et_new_password);
         et_confirm = (EditText) findViewById(R.id.et_confirm_new_password);
@@ -37,14 +40,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            check();
+                check();
 
             }
         });
-
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     private void check() {
@@ -53,25 +52,18 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 (!StringSupport.isNullOrEmpty(et_confirm.getText().toString().trim()))) {
             if (et_new.getText().toString().trim().length() >= 6) {
                 if (et_new.getText().toString().equals(et_confirm.getText().toString())) {
-                    new ChangePasswordAsyncTask(getApplicationContext()).setCallback(new Callback() {
+                    new ChangePasswordAsyncTask(this).setCallback(new Callback() {
                         @Override
                         public void onPreExecute() {
 
                         }
+
                         @Override
                         public void onPostExecute(Object o) {
                             onBackPressed();
                             Toast.makeText(ChangePasswordActivity.this, "Đổi mật khẩu thành công!", Toast.LENGTH_LONG).show();
-                            final JSONObject data = (JSONObject) o;
-                            if (o != null) {
-                                try {
-
-                                } catch (Exception e) {
-                                    Log.d("login service", e.getMessage());
-                                }
-                            }
                         }
-                    }).execute(Constants.XML_USER_ID, et_old.getText().toString().trim(), et_new.getText().toString().trim());
+                    }).execute(Constants.getPreference(this, Constants.XML_USER_ID), et_old.getText().toString().trim(), et_new.getText().toString().trim());
                 } else {
                     Toast.makeText(ChangePasswordActivity.this, "Mật khẩu mới không khớp!", Toast.LENGTH_LONG).show();
                 }

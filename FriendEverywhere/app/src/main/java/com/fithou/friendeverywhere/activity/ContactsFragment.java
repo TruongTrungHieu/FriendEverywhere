@@ -11,17 +11,22 @@ import android.widget.ExpandableListView;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.adapter.ContactAdapter;
+import com.fithou.friendeverywhere.asynctask.GetListFriendAsyncTask;
+import com.fithou.friendeverywhere.object.FriendObject;
 import com.fithou.friendeverywhere.object.UserObject;
+import com.fithou.friendeverywhere.ultis.Callback;
+import com.fithou.friendeverywhere.ultis.Constants;
 
 import java.util.ArrayList;
 
 
 public class ContactsFragment extends Fragment implements View.OnClickListener {
 
-    private ArrayList<UserObject> userList;
+    private ArrayList<FriendObject> listFriend;
     private ContactAdapter contactAdapter;
     private ExpandableListView myList;
     private FloatingActionButton btn_find_friend;
+    private String user_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,36 +39,9 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_contacts, container, false);
 
-        userList = new ArrayList<UserObject>();
-        UserObject userObject = new UserObject();
-        userObject.setFullname("Vũ Huy Hùng");
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        userList.add(userObject);
-        UserObject userObject1 = new UserObject();
-        userObject1.setFullname("Hoang Thanh Hoa");
-        userList.add(userObject1);
-        UserObject userObject2 = new UserObject();
-        userObject2.setFullname("Do Xuan Cho");
-        userList.add(userObject2);
-        UserObject userObject3 = new UserObject();
-        userObject3.setFullname("Nhu Thanh Chung");
-        userList.add(userObject3);
-        UserObject userObject4 = new UserObject();
-        userObject4.setFullname("Mai Kim Chi");
-        userList.add(userObject4);
+        user_id = Constants.getPreference(this.getContext(), Constants.XML_USER_ID);
 
-        myList = (ExpandableListView)v.findViewById(R.id.expand_list_view_contact);
+        myList = (ExpandableListView) v.findViewById(R.id.expand_list_view_contact);
         myList.setGroupIndicator(null);
         myList.setClickable(true);
         myList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
@@ -71,18 +49,41 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                if(groupPosition != previousGroup)
+                if (groupPosition != previousGroup)
                     myList.collapseGroup(previousGroup);
                 previousGroup = groupPosition;
             }
         });
-        contactAdapter = new ContactAdapter(this.getActivity(), userList);
-        myList.setAdapter(contactAdapter);
 
         btn_find_friend = (FloatingActionButton) v.findViewById(R.id.btn_find_friend);
         btn_find_friend.setOnClickListener(this);
 
+        reloadView();
+
+        new GetListFriendAsyncTask(this.getActivity()).setCallback(new Callback<ArrayList<FriendObject>>() {
+            @Override
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void onPostExecute(ArrayList<FriendObject> list) {
+                if (list != null) {
+                    listFriend = new ArrayList<>();
+                    listFriend = list;
+                    reloadView();
+                }
+            }
+        }).execute(user_id);
+
         return v;
+    }
+
+    private void reloadView() {
+        if (listFriend != null) {
+            contactAdapter = new ContactAdapter(this.getActivity(), listFriend);
+            myList.setAdapter(contactAdapter);
+        }
     }
 
     @Override

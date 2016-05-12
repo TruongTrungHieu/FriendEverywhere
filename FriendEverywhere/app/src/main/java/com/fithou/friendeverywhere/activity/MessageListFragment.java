@@ -12,9 +12,12 @@ import android.view.ViewGroup;
 
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.adapter.MessageListAdapter;
+import com.fithou.friendeverywhere.asynctask.GetListGroupAsyncTask;
 import com.fithou.friendeverywhere.object.GroupObject;
 import com.fithou.friendeverywhere.object.MessageObject;
 import com.fithou.friendeverywhere.object.UserObject;
+import com.fithou.friendeverywhere.ultis.Callback;
+import com.fithou.friendeverywhere.ultis.Constants;
 
 import java.util.ArrayList;
 
@@ -25,6 +28,7 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<GroupObject> listGroup;
     private FloatingActionButton floatingActionButton;
+    private String user_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,22 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
 
         initData();
         reloadData();
+
+        new GetListGroupAsyncTask(this.getActivity()).setCallback(new Callback<ArrayList<GroupObject>>() {
+            @Override
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void onPostExecute(ArrayList<GroupObject> list) {
+                if (list != null) {
+                    listGroup = new ArrayList<>();
+                    listGroup = list;
+                    reloadData();
+                }
+            }
+        }).execute(user_id);
 
         return v;
     }
@@ -75,18 +95,6 @@ public class MessageListFragment extends Fragment implements View.OnClickListene
 
 
     public void initData() {
-        listGroup = new ArrayList<>();
-        GroupObject groupObject = new GroupObject();
-        groupObject.setGroup_id("G_ID_TEST");
-        groupObject.setDisplay_name("ádasd");
-
-        listGroup.add(groupObject);
-
-        GroupObject groupObject1 = new GroupObject();
-        groupObject1.setGroup_id("G_ID_TEST_1");
-        groupObject1.setDisplay_name("group 1");
-
-        listGroup.add(groupObject1);
-
+        user_id = Constants.getPreference(this.getContext(), Constants.XML_USER_ID);
     }
 }

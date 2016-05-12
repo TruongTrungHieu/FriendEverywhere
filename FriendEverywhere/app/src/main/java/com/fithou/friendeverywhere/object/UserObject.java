@@ -29,7 +29,7 @@ public class UserObject implements Serializable {
     private float latitude;
     @SerializedName("longtitude")
     private float longtitude;
-    @SerializedName("pass")
+
     private String pass;
     @SerializedName("online_status")
     private int online_status;
@@ -39,9 +39,6 @@ public class UserObject implements Serializable {
     private String about_me;
     @SerializedName("gcm_id")
     private String gcm_id;
-
-    private String firtCharacterName;
-    private String seriousName;
 
     public UserObject() {
 

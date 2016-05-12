@@ -1,6 +1,7 @@
 package com.fithou.friendeverywhere.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,10 +19,18 @@ import android.widget.Toast;
 import com.fithou.friendeverywhere.R;
 import com.fithou.friendeverywhere.adapter.CountryAdapter;
 import com.fithou.friendeverywhere.adapter.NewMessageListAdapter;
+import com.fithou.friendeverywhere.asynctask.CreateGroupAsyncTask;
+import com.fithou.friendeverywhere.asynctask.GetListFriendAsyncTask;
+import com.fithou.friendeverywhere.object.FriendObject;
+import com.fithou.friendeverywhere.object.GroupObject;
 import com.fithou.friendeverywhere.object.UserObject;
+import com.fithou.friendeverywhere.ultis.Callback;
 import com.fithou.friendeverywhere.ultis.Commons;
+import com.fithou.friendeverywhere.ultis.Constants;
 import com.fithou.friendeverywhere.ultis.StringSupport;
 import com.fithou.friendeverywhere.ultis.newmessage.UserTempObject;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,6 +44,8 @@ public class NewMessageActivity extends AppCompatActivity implements Commons.OnR
     private NewMessageListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private String display_name_group;
+    private String user_id;
+    private String user_id_arr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,70 +55,51 @@ public class NewMessageActivity extends AppCompatActivity implements Commons.OnR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        user_id = Constants.getPreference(this, Constants.XML_USER_ID);
+
         initData();
         inflateView();
         reloadView();
+
+        new GetListFriendAsyncTask(this).setCallback(new Callback<ArrayList<FriendObject>>() {
+            @Override
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void onPostExecute(ArrayList<FriendObject> list) {
+                if (list != null) {
+                    listUser = new ArrayList<>();
+                    for (FriendObject f : list) {
+                        listUser.add(f.getFriend_object());
+                    }
+                    initData();
+                    reloadView();
+                }
+            }
+        }).execute(user_id);
     }
 
     protected void initData() {
-        listUser = new ArrayList<>();
-        // FAKE DATE
-        UserObject u = new UserObject();
-        u.setFullname("");
-        listUser.add(u);
-        UserObject u1 = new UserObject();
-        u1.setFullname("Adele");
-        listUser.add(u1);
-        UserObject u2 = new UserObject();
-        u2.setFullname("Đông Nhi");
-        listUser.add(u2);
-        UserObject u3 = new UserObject();
-        u3.setFullname("Tóc Tiên");
-        listUser.add(u3);
-        UserObject u4 = new UserObject();
-        u4.setFullname("Lương Bích Hữu");
-        listUser.add(u4);
-        UserObject u5 = new UserObject();
-        u5.setFullname("Bích Phương");
-        listUser.add(u5);
-        UserObject u6 = new UserObject();
-        u6.setFullname("Bhánh Phương");
-        listUser.add(u6);
-        UserObject u7 = new UserObject();
-        u7.setFullname("Tuấn Hưng");
-        listUser.add(u7);
-        UserObject u8 = new UserObject();
-        u8.setFullname("Miu Lê");
-        listUser.add(u8);
-        UserObject u9 = new UserObject();
-        u9.setFullname("Chị Lý");
-        listUser.add(u9);
-        UserObject u11 = new UserObject();
-        u11.setFullname("Khởi My");
-        listUser.add(u11);
-        UserObject u12 = new UserObject();
-        u12.setFullname("Hamlet Trương");
-        listUser.add(u12);
-        UserObject u13 = new UserObject();
-        u13.setFullname("Như Quỳnh");
-        listUser.add(u13);
+        if (listUser != null) {
+            sortListUser();
 
-        sortListUser();
-
-        listUserTemp = new ArrayList<>();
-        String header = null;
-        for (UserObject userObject : listUser) {
-            UserTempObject userTempObject = new UserTempObject();
-            userTempObject.setUserObject(userObject);
-            if (StringSupport.isNullOrEmpty(header)) {
-                userTempObject.setIsHeader();
-            } else {
-                if (header.compareTo(StringSupport.getFirstCharacterName(userObject.getFullname())) != 0) {
+            listUserTemp = new ArrayList<>();
+            String header = null;
+            for (UserObject userObject : listUser) {
+                UserTempObject userTempObject = new UserTempObject();
+                userTempObject.setUserObject(userObject);
+                if (StringSupport.isNullOrEmpty(header)) {
                     userTempObject.setIsHeader();
+                } else {
+                    if (header.compareTo(StringSupport.getFirstCharacterName(userObject.getFullname())) != 0) {
+                        userTempObject.setIsHeader();
+                    }
                 }
+                header = StringSupport.getFirstCharacterName(userObject.getFullname());
+                listUserTemp.add(userTempObject);
             }
-            header = StringSupport.getFirstCharacterName(userObject.getFullname());
-            listUserTemp.add(userTempObject);
         }
     }
 
@@ -148,18 +140,42 @@ public class NewMessageActivity extends AppCompatActivity implements Commons.OnR
         } else {
             if (listUserChoose.size() == 1) {
                 display_name_group = listUserChoose.get(0).getFullname();
+                user_id_arr = listUserChoose.get(0).getUser_id();
             } else {
                 for (int i = 0; i < listUserChoose.size(); ++i) {
                     if (i == 0) {
                         display_name_group = listUserChoose.get(i).getFullname();
+                        user_id_arr = listUserChoose.get(i).getUser_id();
                     } else {
                         display_name_group += ", " + listUserChoose.get(i).getFullname();
+                        user_id_arr += "_" + listUserChoose.get(i).getUser_id();
                     }
                 }
-                Toast.makeText(this, display_name_group, Toast.LENGTH_LONG).show();
                 showDialogDisplayNameGroup();
             }
             // TODO: request create Group
+            new CreateGroupAsyncTask(this).setCallback(new Callback() {
+                @Override
+                public void onPreExecute() {
+
+                }
+
+                @Override
+                public void onPostExecute(Object o) {
+                    if (o != null) {
+                        final JSONObject jsonObject = (JSONObject) o;
+                        try {
+                            GroupObject groupObject = GroupObject.parseJsonToObject(jsonObject);
+                            Intent chat = new Intent(NewMessageActivity.this, MessageActivity.class);
+                            chat.putExtra("GROUP", groupObject);
+                            startActivity(chat);
+                        } catch (Exception e) {
+                            e.getMessage();
+                            return;
+                        }
+                    }
+                }
+            }).execute(display_name_group, user_id, user_id_arr);
         }
     }
 

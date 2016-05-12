@@ -33,13 +33,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.asynctask.CreateGroupAsyncTask;
+import com.fithou.friendeverywhere.asynctask.GetUserMapAsyncTask;
 import com.fithou.friendeverywhere.asynctask.UpdateCurrentLocationAsyncTask;
 import com.fithou.friendeverywhere.object.FriendObject;
+import com.fithou.friendeverywhere.object.GroupObject;
 import com.fithou.friendeverywhere.object.UserObject;
 import com.fithou.friendeverywhere.ultis.Callback;
 import com.fithou.friendeverywhere.ultis.Constants;
 import com.fithou.friendeverywhere.ultis.LocationService;
 import com.fithou.friendeverywhere.ultis.MyLocation;
+import com.fithou.friendeverywhere.ultis.StringSupport;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -120,6 +124,29 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         MyLocation myLocation = new MyLocation(getActivity());
         myLocation.getLocation(getActivity(), locationResult);
         if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            lat = (double) (location.getLatitude());
+            lng = (double) (location.getLongitude());
+            Toast.makeText(getActivity(), lat + "", Toast.LENGTH_LONG).show();
+            new UpdateCurrentLocationAsyncTask(getActivity()).setCallback(new Callback() {
+                @Override
+                public void onPreExecute() {
+
+                }
+
+                @Override
+                public void onPostExecute(Object o) {
+                    final JSONObject data = (JSONObject) o;
+                    if (o != null) {
+                        try {
+                            Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LATITUDE, lat + "");
+                            Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LONGTITUDE, lng + "");
+                        } catch (Exception e) {
+                            Log.d("login service", e.getMessage());
+                        }
+                    }
+                }
+            }).execute(Constants.getPreference(getActivity(), Constants.XML_USER_ID), lat + "", lng + "");
             mMapView.invalidate();
         } else {
 
@@ -217,16 +244,38 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 view_btm.animate().translationY(view_btm.getHeight());
             }
         });
-        fakeData();
 
-        for (FriendObject f : listFriend) {
-            googleMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(f.getFriend_object().getLatitude(), f.getFriend_object().getLongtitude()))
-                    .title(f.getFriend_object().getFullname())
-                    .snippet(f.getFriend_pk())
-                    .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this.getActivity(), marker))));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(21.027020, 105.838166), 13));
+
+        new GetUserMapAsyncTask(this.getActivity()).setCallback(new Callback<ArrayList<FriendObject>>() {
+            @Override
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void onPostExecute(ArrayList<FriendObject> list) {
+                if (list != null) {
+                    listFriend = new ArrayList<>();
+                    listFriend = list;
+                    reloaMarkerMap();
+                }
+            }
+        }).execute(Constants.getPreference(this.getActivity(), Constants.XML_USER_ID));
+    }
+
+    private void reloaMarkerMap() {
+        if (listFriend != null) {
+            for (FriendObject f : listFriend) {
+                if (f.getFriend_object().getLatitude() > 0 && f.getFriend_object().getLongtitude() > 0) {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(f.getFriend_object().getLatitude(), f.getFriend_object().getLongtitude()))
+                            .title(f.getFriend_object().getFullname())
+                            .snippet(f.getFriend_pk())
+                            .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this.getActivity(), marker))));
+                }
+            }
         }
-
     }
 
     @Override
@@ -247,41 +296,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         mMapView.onLowMemory();
     }
 
-    public void fakeData() {
-        listFriend = new ArrayList<>();
-        UserObject userObject = new UserObject();
-        UserObject userObject1 = new UserObject();
-        UserObject userObject2 = new UserObject();
-        userObject.setLatitude((float) 21.027020);
-        userObject.setLongtitude((float) 105.838166);
-        userObject.setFullname("Hung Vu");
+    public static Bitmap createDrawableFromView(Context context, View view) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
 
-        userObject1.setLatitude((float) 21.048021);
-        userObject1.setLongtitude((float) 105.859167);
-        userObject1.setFullname("Hoa Hoang");
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
 
-        userObject2.setLatitude((float) 21.038021);
-        userObject2.setLongtitude((float) 105.849167);
-        userObject2.setFullname("Long Nguyen");
-
-        FriendObject friendObject = new FriendObject();
-        friendObject.setFriend_object(userObject);
-        friendObject.setFriend_pk("1462352174");
-        friendObject.setFriend_status(0);
-
-        FriendObject friendObject1 = new FriendObject();
-        friendObject1.setFriend_object(userObject1);
-        friendObject1.setFriend_pk("1462352175");
-        friendObject1.setFriend_status(2);
-
-        FriendObject friendObject2 = new FriendObject();
-        friendObject2.setFriend_object(userObject2);
-        friendObject2.setFriend_pk("1462362175");
-        friendObject2.setFriend_status(2);
-
-        listFriend.add(friendObject);
-        listFriend.add(friendObject1);
-        listFriend.add(friendObject2);
+        return bitmap;
     }
 
     public void showViewByFriend(String friendID) {
@@ -292,8 +319,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             }
         }
         if (friend_map_obj != null) {
-            tv_name.setText(friend_map_obj.getFriend_object().getFullname());
-            tv_about.setText(friend_map_obj.getFriend_object().getAbout_me());
+            if (StringSupport.isNullOrEmpty(friend_map_obj.getFriend_object().getFullname())) {
+                tv_name.setText("");
+            } else {
+                tv_name.setText(friend_map_obj.getFriend_object().getFullname());
+            }
+            if (StringSupport.isNullOrEmpty(friend_map_obj.getFriend_object().getAbout_me())) {
+                tv_about.setText("");
+            } else {
+                tv_about.setText(friend_map_obj.getFriend_object().getAbout_me());
+            }
+
             if (friend_map_obj.getFriend_status() == Constants.FRIEND_STATUS_NONE || friend_map_obj.getFriend_status() == Constants.FRIEND_STATUS_REQUESTED) {
                 btn_call.setVisibility(View.GONE);
                 btn_sms.setVisibility(View.GONE);
@@ -311,27 +347,49 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         switch (id) {
             case R.id.btn_call_map:
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + friend_map_obj.getFriend_object().getPhone()));
-                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                if (!StringSupport.isNullOrEmpty(friend_map_obj.getFriend_object().getPhone())) {
+                    callIntent.setData(Uri.parse("tel:" + friend_map_obj.getFriend_object().getPhone()));
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    getActivity().startActivity(callIntent);
                 }
-                getActivity().startActivity(callIntent);
                 break;
             case R.id.btn_sms_map:
-                Uri uri = Uri.parse("smsto:" + friend_map_obj.getFriend_object().getPhone());
-                Intent it = new Intent(Intent.ACTION_SENDTO, uri);
-                getActivity().startActivity(it);
+                if (!StringSupport.isNullOrEmpty(friend_map_obj.getFriend_object().getPhone())) {
+                    Uri uri = Uri.parse("smsto:" + friend_map_obj.getFriend_object().getPhone());
+                    Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+                    getActivity().startActivity(it);
+                }
                 break;
             case R.id.btn_chat_map:
-                getActivity().startService(new Intent(getActivity(),LocationService.class));
-                getActivity().getIntent().getStringExtra("Latitude");
+                new CreateGroupAsyncTask(this.getContext()).setCallback(new Callback() {
+                    @Override
+                    public void onPreExecute() {
 
-                Toast.makeText(getActivity(), lat1 + "---" + lng1, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onPostExecute(Object o) {
+                        if (o != null) {
+                            final JSONObject jsonObject = (JSONObject) o;
+                            try {
+                                GroupObject groupObject = GroupObject.parseJsonToObject(jsonObject);
+                                Intent chat = new Intent(getActivity(), MessageActivity.class);
+                                chat.putExtra("GROUP", groupObject);
+                                getActivity().startActivity(chat);
+                            } catch (Exception e) {
+                                e.getMessage();
+                                return;
+                            }
+                        }
+                    }
+                }).execute(friend_map_obj.getFriend_object().getFullname(), Constants.getPreference(this.getContext(), Constants.XML_USER_ID), friend_map_obj.getFriend_object().getUser_id());
                 break;
             case R.id.btn_info_map:
                 Intent info = new Intent(getActivity(), FriendProfileActivity.class);
-                getActivity().startActivity(info);
                 info.putExtra("FRIEND", friend_map_obj);
+                getActivity().startActivity(info);
                 break;
             default:
                 break;

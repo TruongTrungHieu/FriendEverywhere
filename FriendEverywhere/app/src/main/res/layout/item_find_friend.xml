@@ -1,51 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_main_ff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:orientation="vertical"
-    android:paddingBottom="10dp"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:gravity="center_vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rl_find_friend">
-
-    <ImageView
-        android:id="@+id/img_avatar"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@color/colorPrimary"
-        android:padding="10dp"
-        android:src="@drawable/avatar_default"
-        android:layout_marginLeft="10dp"/>
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/rimg_avatar_ff"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="@string/description"
+        android:src="@drawable/avatar_default" />
 
     <TextView
-        android:id="@+id/tv_fullname"
+        android:id="@+id/tv_fullname_ff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Khang Minh"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/img_avatar"
-        android:layout_toEndOf="@+id/img_avatar"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp" />
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/rimg_avatar_ff"
+        android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:id="@+id/img_add_friend"
-        android:src="@drawable/add_friend"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

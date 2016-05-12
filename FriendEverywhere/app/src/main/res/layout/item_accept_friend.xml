@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/img_avatar"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:padding="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="5dp"
         android:src="@drawable/avatar_default" />
 
     <TextView
@@ -21,7 +21,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/img_avatar"
-        android:text="Khang Minh"
         android:textColor="@color/black"
         android:textSize="16sp" />
 

@@ -8,65 +8,67 @@
     tools:context="com.fithou.friendeverywhere.activity.FindFriendActivity">
 
     <TextView
+        android:id="@+id/tv_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="CHỌN QUỐC GIA"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_find_quoc_gia"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/tvtv"
-        android:text="@string/add_friend"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_c"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:textSize="16dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/tv_find_quoc_gia"
-        android:text="+Vietnam (+84)"
-        android:paddingLeft="10dp"
-        android:textSize="16dp"
-        android:layout_below="@+id/tvtv"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="10dp"/>
-
     <LinearLayout
+        android:id="@+id/ll_find_friend_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10"
-        android:id="@+id/ll_find_friend_activity"
-        android:layout_below="@+id/tv_find_quoc_gia"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/find_std"
-                android:hint="@string/add_sdt"
-                android:layout_weight="7.0"
-                android:paddingLeft="15dp"
-                android:textSize="16dp"
-                android:singleLine="true"
-                />
-            <Button
-                android:layout_width="21dp"
-                android:layout_height="35dp"
-                android:id="@+id/btn_find_friend"
-                android:layout_weight="3.0"
-                android:text="Tìm"
-                android:background="@drawable/border_style_radius"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_find_quoc_gia"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <EditText
+            android:id="@+id/edt_phone_number_ff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="7.0"
+            android:hint="@string/add_sdt"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/btn_find_friend"
+            android:layout_width="21dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="3.0"
+            android:background="@drawable/border_style_radius"
+            android:text="Tìm"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_find_friend"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ll_find_friend_activity">
-        
+
     </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

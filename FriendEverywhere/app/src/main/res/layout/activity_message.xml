@@ -11,7 +11,9 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/footer"
         android:background="@android:color/transparent"
-        android:divider="@android:color/transparent" />
+        android:divider="@android:color/transparent"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
 
     <LinearLayout
         android:id="@+id/footer"

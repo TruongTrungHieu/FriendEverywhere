@@ -8,9 +8,6 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
-/**
- * Created by TRUNGHIEU on 12/3/2016.
- */
 public class FriendObject implements Serializable {
 
     @SerializedName("friend_pk")

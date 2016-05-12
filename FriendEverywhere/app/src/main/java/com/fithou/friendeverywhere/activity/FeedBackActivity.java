@@ -13,8 +13,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.asynctask.CheckphoneAsyncTask;
+import com.fithou.friendeverywhere.asynctask.FeedbackAsyncTask;
 import com.fithou.friendeverywhere.object.FeedbackObject;
+import com.fithou.friendeverywhere.ultis.Callback;
+import com.fithou.friendeverywhere.ultis.Constants;
 import com.fithou.friendeverywhere.ultis.StringSupport;
+
+import org.json.JSONObject;
 
 import java.util.Date;
 
@@ -80,8 +86,26 @@ public class FeedBackActivity extends AppCompatActivity implements View.OnClickL
         if (view.getId() == R.id.btn_send_feedback) {
             if (checkValidate()) {
                 // TODO: send Feedback
-                Toast.makeText(this, "Feedback has been sent", Toast.LENGTH_LONG);
-                onBackPressed();
+                new FeedbackAsyncTask(this).setCallback(new Callback() {
+                    @Override
+                    public void onPreExecute() {
+
+                    }
+
+                    @Override
+                    public void onPostExecute(Object o) {
+                        final JSONObject data = (JSONObject) o;
+                        if (o != null) {
+                            try {
+                                Toast.makeText(getApplication(), "Cảm ơn sự góp ý của bạn!", Toast.LENGTH_SHORT).show();
+                                onBackPressed();
+                            } catch (Exception e) {
+                                e.getMessage();
+                                return;
+                            }
+                        }
+                    }
+                }).execute(Constants.getPreference(this, Constants.XML_USER_ID), feedbackObject.getSubject(), feedbackObject.getContent());
             }
         }
     }
