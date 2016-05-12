@@ -1,23 +1,18 @@
 package com.fithou.friendeverywhere.activity;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -38,10 +33,8 @@ import com.fithou.friendeverywhere.asynctask.GetUserMapAsyncTask;
 import com.fithou.friendeverywhere.asynctask.UpdateCurrentLocationAsyncTask;
 import com.fithou.friendeverywhere.object.FriendObject;
 import com.fithou.friendeverywhere.object.GroupObject;
-import com.fithou.friendeverywhere.object.UserObject;
 import com.fithou.friendeverywhere.ultis.Callback;
 import com.fithou.friendeverywhere.ultis.Constants;
-import com.fithou.friendeverywhere.ultis.LocationService;
 import com.fithou.friendeverywhere.ultis.MyLocation;
 import com.fithou.friendeverywhere.ultis.StringSupport;
 import com.google.android.gms.location.LocationListener;
@@ -54,7 +47,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.vision.barcode.Barcode;
 
 import org.json.JSONObject;
 
@@ -77,21 +69,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private Location location;
     private double lat1, lng1;
     private FriendObject friend_map_obj;
-
-    public static Bitmap createDrawableFromView(Context context, View view) {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
-        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
-        view.buildDrawingCache();
-        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-
-        return bitmap;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,40 +94,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             public void gotLocation(Location location) {
                 lat1 = location.getLatitude();
                 lng1 = location.getLongitude();
-                Log.d("11111111111111111", lat1+"");
 
             }
         };
         MyLocation myLocation = new MyLocation(getActivity());
         myLocation.getLocation(getActivity(), locationResult);
-        if (location != null) {
-            System.out.println("Provider " + provider + " has been selected.");
-            lat = (double) (location.getLatitude());
-            lng = (double) (location.getLongitude());
-            Toast.makeText(getActivity(), lat + "", Toast.LENGTH_LONG).show();
-            new UpdateCurrentLocationAsyncTask(getActivity()).setCallback(new Callback() {
-                @Override
-                public void onPreExecute() {
-
-                }
-
-                @Override
-                public void onPostExecute(Object o) {
-                    final JSONObject data = (JSONObject) o;
-                    if (o != null) {
-                        try {
-                            Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LATITUDE, lat + "");
-                            Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LONGTITUDE, lng + "");
-                        } catch (Exception e) {
-                            Log.d("login service", e.getMessage());
-                        }
-                    }
-                }
-            }).execute(Constants.getPreference(getActivity(), Constants.XML_USER_ID), lat + "", lng + "");
-            mMapView.invalidate();
-        } else {
-
-        }
 
         mMapView.getMapAsync(this);
 
