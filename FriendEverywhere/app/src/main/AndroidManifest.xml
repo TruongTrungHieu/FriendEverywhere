@@ -88,6 +88,9 @@
         <activity android:name=".activity.ChangePasswordActivity"
             android:label="@string/change_pass"
             android:theme="@style/CustomActionBarTheme"></activity>
+        <activity android:name=".activity.CreatePasswordActivity"
+            android:theme="@style/CustomActionBarTheme"
+            android:label="@string/title_activity_create_pass"></activity>
     </application>
 
 </manifest>

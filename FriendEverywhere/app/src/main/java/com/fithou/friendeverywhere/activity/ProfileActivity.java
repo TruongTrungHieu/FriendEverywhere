@@ -163,6 +163,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                                     Constants.savePreference(getApplicationContext(), Constants.XML_GCM_ID, gcm_id);
 
                                     initData();
+                                    reloadView();
                                 } catch (Exception e) {
                                     Log.d("login service", e.getMessage());
                                 }

@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     String photo = data.getString("photo");
                                     String about_me = data.getString("about_me");
                                     String gcm_id = data.getString("gcm_id");
+                                    String change_pass = data.getString("change_pass");
 
                                     Constants.savePreference(getApplicationContext(), Constants.XML_USER_ID, user_id);
                                     Constants.savePreference(getApplicationContext(), Constants.XML_FULL_NAME, fullname);
@@ -109,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     Constants.savePreference(getApplicationContext(), Constants.XML_PHOTO, photo);
                                     Constants.savePreference(getApplicationContext(), Constants.XML_ABOUT_ME, about_me);
                                     Constants.savePreference(getApplicationContext(), Constants.XML_GCM_ID, gcm_id);
+                                    Constants.savePreference(getApplicationContext(), Constants.XML_CREATE_PASSWORD, change_pass);
 
                                     finish();
                                     Intent main = new Intent(LoginActivity.this, MainActivity.class);

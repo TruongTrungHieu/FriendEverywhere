@@ -109,6 +109,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         Constants.savePreference(this.getContext(), Constants.XML_PHOTO, "");
         Constants.savePreference(this.getContext(), Constants.XML_ABOUT_ME, "");
         Constants.savePreference(this.getContext(), Constants.XML_GCM_ID, "");
+        Constants.savePreference(this.getContext(), Constants.XML_CREATE_PASSWORD, "");
     }
 
 }

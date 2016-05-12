@@ -15,24 +15,27 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if (checkFisrtUsing()) {
-            Intent main = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(main);
-            finish();
-        } else {
-            Intent register = new Intent(SplashActivity.this, RegisterActivity.class);
-            startActivity(register);
-            finish();
-        }
+        checkFisrtUsing();
 
     }
 
-    private boolean checkFisrtUsing() {
+    private void checkFisrtUsing() {
         String user_id = Constants.getPreference(getApplicationContext(), Constants.XML_USER_ID);
+        String create_password = Constants.getPreference(getApplicationContext(), Constants.XML_CREATE_PASSWORD);
         if (StringSupport.isNullOrEmpty(user_id)) {
-            return false;
+            Intent register = new Intent(SplashActivity.this, RegisterActivity.class);
+            startActivity(register);
+            finish();
         } else {
-            return true;
+            if (StringSupport.isNullOrEmpty(create_password) || create_password.equals("0")) {
+                Intent create_pass = new Intent(SplashActivity.this, CreatePasswordActivity.class);
+                startActivity(create_pass);
+                finish();
+            } else {
+                Intent main = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(main);
+                finish();
+            }
         }
     }
 }

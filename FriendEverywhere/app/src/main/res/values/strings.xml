@@ -4,6 +4,7 @@
     <string name="title_accept_friend">Lời mời kết bạn</string>
     <string name="title_country_list">Chọn quốc gia</string>
     <string name="title_new_message">Tin nhắn mới</string>
+    <string name="title_activity_create_pass">Khởi tạo mật khẩu</string>
     <string name="description"></string>
 
     <!-- REGISTER -->
@@ -121,5 +122,8 @@
     <string name="old_password">Mật khẩu cũ</string>
     <string name="new_password">Mật khẩu mới</string>
     <string name="confirm_new_password">Nhập lại mật khẩu mới</string>
+
+    <!-- CREATE PASSWORD-->
+    <string name="create_pass_btn">Khởi tạo mật khẩu</string>
 
 </resources>

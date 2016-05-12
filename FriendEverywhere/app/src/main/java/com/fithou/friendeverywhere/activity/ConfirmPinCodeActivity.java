@@ -14,13 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
-import com.fithou.friendeverywhere.asynctask.CheckphoneAsyncTask;
 import com.fithou.friendeverywhere.asynctask.RegisterAsyncTask;
 import com.fithou.friendeverywhere.ultis.Callback;
 import com.fithou.friendeverywhere.ultis.Constants;
 import com.fithou.friendeverywhere.ultis.StringSupport;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Random;
@@ -80,7 +78,7 @@ public class ConfirmPinCodeActivity extends AppCompatActivity implements View.On
                                         String user_id = data.getString("user_id");
                                         Constants.savePreference(getApplicationContext(), Constants.XML_USER_ID, user_id);
                                         finish();
-                                        Intent main = new Intent(ConfirmPinCodeActivity.this, MainActivity.class);
+                                        Intent main = new Intent(ConfirmPinCodeActivity.this, CreatePasswordActivity.class);
                                         startActivity(main);
                                     } catch (Exception e) {
                                         e.printStackTrace();
