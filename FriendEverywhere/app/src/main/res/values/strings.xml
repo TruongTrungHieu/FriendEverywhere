@@ -23,7 +23,7 @@
     <!-- LOGIN-->
     <string name="sdt">Số điện thoại</string>
     <string name="pass">Mật khẩu</string>
-    <string name="laylaitaikhoan">LẤY LẠI TÀI KHOẢN</string>
+    <string name="laylaitaikhoan">LẤY LẠI MẬT KHẨU</string>
     <string name="taikhoanmoi">TÀI KHOẢN MỚI</string>
 
     <!--AppIntro-->
@@ -111,5 +111,15 @@
     <string name="birth_day">Ngày sinh</string>
     <string name="phone_number">Điện thoại</string>
     <string name="email_profile">Email</string>
+
+    <!-- ACCOUNT SETTINGS -->
+    <string name="change_pass">Đổi mật khẩu</string>
+    <string name="share_position">Chia sẻ vị trí</string>
+    <string name="delete_account">Xóa tài khoản</string>
+
+    <!-- CHANGE PASSWORD -->
+    <string name="old_password">Mật khẩu cũ</string>
+    <string name="new_password">Mật khẩu mới</string>
+    <string name="confirm_new_password">Nhập lại mật khẩu mới</string>
 
 </resources>

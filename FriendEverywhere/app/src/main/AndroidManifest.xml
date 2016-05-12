@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.MyApplication"
@@ -54,11 +55,11 @@
         <activity
             android:name=".activity.AcceptFriendActivity"
             android:label="@string/title_accept_friend"
-            android:theme="@style/CustomActionBarTheme"></activity>
-        <activity android:name=".activity.MessageActivity"></activity>
+            android:theme="@style/CustomActionBarTheme" />
+        <activity android:name=".activity.MessageActivity" />
         <activity
             android:name=".activity.NewMessageActivity"
-            android:label="@string/title_new_message"></activity>
+            android:label="@string/title_new_message" />
         <activity
             android:name=".activity.CountryListActivity"
             android:label="@string/title_country_list"
@@ -79,6 +80,13 @@
         <activity
             android:name=".activity.FindFriendActivity"
             android:label="@string/title_activity_find_friend"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity
+            android:name=".activity.SettingAccountActivity"
+            android:label="@string/accSettings"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity android:name=".activity.ChangePasswordActivity"
+            android:label="@string/change_pass"
             android:theme="@style/CustomActionBarTheme"></activity>
     </application>
 

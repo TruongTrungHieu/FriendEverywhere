@@ -144,12 +144,13 @@
                     android:enabled="false"
                     android:text="Mình là Hùng, mình độc thân, hân hạnh được làm quen"
                     android:textColor="@color/footer_actived"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:padding="3dp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
@@ -177,7 +178,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
@@ -204,7 +205,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 

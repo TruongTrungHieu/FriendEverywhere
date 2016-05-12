@@ -76,7 +76,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 startActivity(update);
                 break;
             case R.id.btn_accountSettings:
-                Intent account = new Intent(this.getActivity(), AboutUsActivity.class);
+                Intent account = new Intent(this.getActivity(), SettingAccountActivity.class);
                 startActivity(account);
                 break;
             case R.id.btn_feedback:

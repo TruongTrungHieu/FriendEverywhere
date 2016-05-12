@@ -1,18 +1,28 @@
 package com.fithou.friendeverywhere.activity;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +30,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fithou.friendeverywhere.R;
+import com.fithou.friendeverywhere.asynctask.UpdateCurrentLocationAsyncTask;
 import com.fithou.friendeverywhere.object.FriendObject;
 import com.fithou.friendeverywhere.object.UserObject;
+import com.fithou.friendeverywhere.ultis.Callback;
 import com.fithou.friendeverywhere.ultis.Constants;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -34,10 +48,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.vision.barcode.Barcode;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener, LocationListener {
 
     private GoogleMap googleMap;
     private MapView mMapView;
@@ -48,6 +65,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private ImageView img_ava;
     private TextView tv_name, tv_about;
     private Button btn_call, btn_sms, btn_chat, btn_info;
+    private LocationManager locationManager;
+    private String provider;
+    private Location location;
+    private double lat, lng;
+    private final static String TAG = MapFragment.class.getSimpleName();
+    private FriendObject friend_map_obj;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +85,41 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         mMapView = (MapView) v.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            location = locationManager.getLastKnownLocation(provider);
+        }
+
+        if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            lat = (double) (location.getLatitude());
+            lng = (double) (location.getLongitude());
+            Toast.makeText(getActivity(), lat+"", Toast.LENGTH_LONG).show();
+            new UpdateCurrentLocationAsyncTask(getActivity()).setCallback(new Callback() {
+                @Override
+                public void onPreExecute() {
+
+                }
+
+                @Override
+                public void onPostExecute(Object o) {
+                    final JSONObject data = (JSONObject) o;
+                    if (o != null) {
+                        try {
+                            Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LATITUDE, lat+"");
+                            Constants.savePreference(getActivity().getApplicationContext(), Constants.XML_LONGTITUDE, lng+"");
+                        } catch (Exception e) {
+                            Log.d("login service", e.getMessage());
+                        }
+                    }
+                }
+            }).execute(Constants.getPreference(getActivity(),Constants.XML_USER_ID),lat+"", lng+"");
+            mMapView.invalidate();
+        } else {
+            System.out.println("Location not available");
+        }
 
         mMapView.getMapAsync(this);
 
@@ -91,15 +149,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             }
         });
 
-
         return v;
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
+
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//        googleMap.setMyLocationEnabled(true);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                googleMap.setMyLocationEnabled(true);
+            }
+        } else {
+            googleMap.setMyLocationEnabled(true);
+        }
         googleMap.setTrafficEnabled(true);
         googleMap.setIndoorEnabled(true);
         googleMap.setBuildingsEnabled(true);
@@ -203,17 +269,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     }
 
     public void showViewByFriend(String friendID) {
-        FriendObject friendObject = null;
         for (FriendObject f : listFriend) {
             if (f.getFriend_pk().equals(friendID)) {
-                friendObject = f;
+                friend_map_obj = f;
                 break;
             }
         }
-        if (friendObject != null) {
-            tv_name.setText(friendObject.getFriend_object().getFullname());
-            tv_about.setText(friendObject.getFriend_object().getAbout_me());
-            if (friendObject.getFriend_status()==Constants.FRIEND_STATUS_NONE || friendObject.getFriend_status()==Constants.FRIEND_STATUS_REQUESTED){
+        if (friend_map_obj != null) {
+            tv_name.setText(friend_map_obj.getFriend_object().getFullname());
+            tv_about.setText(friend_map_obj.getFriend_object().getAbout_me());
+            if (friend_map_obj.getFriend_status() == Constants.FRIEND_STATUS_NONE || friend_map_obj.getFriend_status() == Constants.FRIEND_STATUS_REQUESTED) {
                 btn_call.setVisibility(View.GONE);
                 btn_sms.setVisibility(View.GONE);
                 btn_chat.setVisibility(View.GONE);
@@ -229,20 +294,33 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         int id = view.getId();
         switch (id) {
             case R.id.btn_call_map:
-
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + friend_map_obj.getFriend_object().getPhone()));
+                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                getActivity().startActivity(callIntent);
                 break;
             case R.id.btn_sms_map:
-
+                Uri uri = Uri.parse("smsto:" + friend_map_obj.getFriend_object().getPhone());
+                Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+                getActivity().startActivity(it);
                 break;
             case R.id.btn_chat_map:
 
                 break;
             case R.id.btn_info_map:
-
+                Intent info = new Intent(getActivity(), FriendProfileActivity.class);
+                getActivity().startActivity(info);
+                info.putExtra("FRIEND", friend_map_obj);
                 break;
             default:
                 break;
         }
     }
 
+    @Override
+    public void onLocationChanged(Location location){
+
+    }
 }
